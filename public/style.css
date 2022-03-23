@@ -1,0 +1,13 @@
+:root {
+    --purple-color: #7967ad;
+    --orange-color: #f0cf9c;
+}  
+
+html {
+    background-color: var(--purple-color);
+}
+
+h1 {
+    font-size: 100px;
+    color: var(--orange-color);
+}
