@@ -2,28 +2,37 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title></title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+    <link href="chat.css" rel="stylesheet" type="text/css" />
 
     <!-- import the webpage's client-side javascript file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- import socket.io -->
     <script src="/socket.io/socket.io.js"></script>
+
+    <script src="client.js" async defer></script>
   </head>
   <body>
-    <h1>PB&J Chats</h1>
-    <!-- div to hold chats -->
-	<div id="chats"></div>
-    <!-- div to have input to send chats -->
-	<div>
-		<label for="chat">Enter Chat:</label><br>
-		<input type="text" id="chat" name="chat"><br>
-		<button id="submitbutton">Submit Chat</button>
-	</div> 
-    <script src="client.js" async defer></script>
+    Chats
+    <div class="horl1"></div>
+
+    <div id="chats"></div>
+    <div class="new5"></div>
+
+    <button id="sned_butt" type="button">Send</button>
+
+    <button id="add_chast" type="button">+</button>
+
+    <form>
+      <input
+        id="messageinpoot"
+        type="text"
+        placeholder="Type message here"
+        id="message"
+        name="message"
+      /><br />
+    </form>
   </body>
 </html>
