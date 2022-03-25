@@ -12,12 +12,12 @@ socket.on('allChats', (chats) => {
 });
 
 //send new chats when button is clicked
-$("button").click((event) => {
+$("#sned_butt").click((event) => {
 	//prevent default refresh page
 	event.preventDefault()
 
 	//send chat from input to server
-	socket.emit("newChat", $("input").val());
+	socket.emit("newChat", $("messageinpoot").val());
 })
 
 //receive new chats and append them
