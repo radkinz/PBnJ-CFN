@@ -50,7 +50,7 @@ io.on('connection', socket => {
   //listen for new messages
   socket.on('newChat', newChat => {
     //add chat to database
-    connection.query('INSERT INTO chathistory(chat, user_id) VALUES (?, ?);', [newChat, 1], (err) => {
+    connection.query('INSERT INTO chathistory(chat, userid) VALUES (?, ?);', [newChat, 1], (err) => {
       if (err) console.log(err);
     //send out new chat to connected users
     io.emit('newChattoUsers', newChat)
