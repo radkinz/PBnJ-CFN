@@ -1,4 +1,5 @@
 const socket = io();
+console.log("hello")
 
 //receive all chats when connected
 socket.on('allChats', (chats) => {
@@ -17,7 +18,7 @@ $("#sned_butt").click((event) => {
 	event.preventDefault()
 
 	//send chat from input to server
-	socket.emit("newChat", $("messageinpoot").val());
+	socket.emit("newChat", $("#messageinpoot").val());
 })
 
 //receive new chats and append them

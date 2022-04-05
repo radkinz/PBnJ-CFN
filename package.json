@@ -17,6 +17,8 @@
     "hogan": "^1.0.2",
     "mustache": "^4.2.0",
     "mustache-express": "^1.3.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
     "socket.io": "^4.4.1",
     "sqlite3": "^5.0.2"
   },
