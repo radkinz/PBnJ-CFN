@@ -7,14 +7,15 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 const bodyParser = require('body-parser')
 const mysql = require("mysql2");
+const config = require('dotenv').config()
 
 //connect to database
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "me",
-  password: "password",
-  database: "pbnj",
-  port: 1433
+  host: process.env.HOST,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
+  database: process.env.DATABASE,
+  port: process.env.PORT
 });
 
 //setup app
