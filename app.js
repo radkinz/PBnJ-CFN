@@ -36,6 +36,11 @@ app.get('/chat', (req, res) => {
   res.render('chat.html', {})
 })
 
+//display authentication page
+app.get('/login', (req, res) => {
+  res.render('login.html', {})
+})
+
 //connect new user
 io.on('connection', socket => {
   //send new user all chat messages from database
