@@ -13,9 +13,14 @@ socket.on('allChats', (chats) => {
 	console.log($(".ex2"))
 
 });
-
-socket.on("alert", (event) => {
-	alert("Incorrect username or password. Please try again.")
+//check user login status
+socket.on("loginStatus", (status) => {
+	if (status) {
+		window.location = 
+		"/ButtonMenu"
+	} else {
+		alert("Incorrect username or password. Please try again.");
+	}
 })
 //send new chats when button is clicked
 $("#sned_butt").click((event) => {
@@ -34,7 +39,7 @@ $("#LoginButton").click((event) => {
 	console.log('button')
 
 	//send chat from input to server
-	socket.emit("login", $("#usernameInput").val(), $("#passwordInput"));
+	socket.emit("login", $("#usernameInput").val(), $("#passwordInput").val());
 })
 
 

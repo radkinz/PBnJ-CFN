@@ -72,7 +72,7 @@ io.on('connection', socket => {
         console.log(username, passwordd)
         let UN, password, hashedPassword
         UN = username + ''
-        password = password
+        password = passwordd
         connection.query(
             'SELECT hashword FROM userinfo WHERE username = (?)', [UN],
             (err, result) => {
@@ -80,11 +80,9 @@ io.on('connection', socket => {
                 console.log(result)
                 if (result.length == 0) {
                     // res.render('index.html', {})
-                    socket.emit("alert", (socket) => {})
+                    socket.emit("loginStatus", false)
                 } else {
                     hashedPassword = result[0]['hashword']
-
-                    console.log(hashedPassword)
                         //where the guessed password is compared
                     bcrypt.compare(password, hashedPassword, function(err, isMatch) {
                         if (err) console.log(err)
@@ -95,7 +93,7 @@ io.on('connection', socket => {
                         if (isMatch) {
                             console.log('Encrypted password is: ', password)
                             console.log('Decrypted password is: ', hashedPassword)
-                            res.render('buttonmenu.html', {})
+                            socket.emit("loginStatus", true)
                             // socket.emit("alert", (socket) => {})
                         }
 
@@ -103,7 +101,7 @@ io.on('connection', socket => {
                             // If password doesn't match the following
                             // message will be sent
                             console.log(hashedPassword + ' is not encryption of ' + password)
-                            res.render('index.html', {})
+                            socket.emit("loginStatus", false)
                         }
                     })
                 }
