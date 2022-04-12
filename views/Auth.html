@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login-In</title>
     <link rel="stylesheet" type="text/css" href="Auth.css" />
+       <!-- import the webpage's client-side javascript file -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!-- import socket.io -->
+    <script src="/socket.io/socket.io.js"></script>
   </head>
 
   <body>
     <h1>-PB&J Fund-</h1>
     <div id="large-container">
-      <form id="Username" method="POST" action="/login">
+      
         <input id = "usernameInput" type="text" placeholder="Username" name="username" /><br />
 
         <input id = "passwordInput"  type="password" placeholder="Password" name="password" /><br />
         <div id="Login">
-          <input id="Login" type="submit" name="submit" value="Log In!" />
+          <button id="LoginButton">Log In!</button>
         </div>
-      </form>
+      <
     </div>
+    <script src="client.js" async defer></script>
   </body>
 </html>

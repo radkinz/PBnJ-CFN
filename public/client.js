@@ -14,6 +14,9 @@ socket.on('allChats', (chats) => {
 
 });
 
+socket.on("alert", (event) => {
+	alert("Incorrect username or password. Please try again.")
+})
 //send new chats when button is clicked
 $("#sned_butt").click((event) => {
 	//prevent default refresh page
@@ -22,6 +25,20 @@ $("#sned_butt").click((event) => {
 	//send chat from input to server
 	socket.emit("newChat", $("#messageinpoot").val());
 })
+
+//when login button click send to server
+$("#LoginButton").click((event) => {
+	//prevent default refresh page
+	event.preventDefault()
+
+	console.log('button')
+
+	//send chat from input to server
+	socket.emit("login", $("#usernameInput").val(), $("#passwordInput"));
+})
+
+
+
 
 //receive new chats and append them
 socket.on("newChattoUsers", (msg) => {
