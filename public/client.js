@@ -7,8 +7,10 @@ socket.on('allChats', (chats) => {
 
 	//display chat array
 	for (let i = 0; i < chats.length; i++) {
-		$("#chats").append("<li>" + chats[i].chat + "</li>");
+		$(".ex2").append('<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' + chats[i].chat + '</p><span class="time-left">11:01</span></div>');
 	}
+
+	console.log($(".ex2"))
 
 });
 
@@ -23,5 +25,6 @@ $("#sned_butt").click((event) => {
 
 //receive new chats and append them
 socket.on("newChattoUsers", (msg) => {
-	$("#chats").append("<li>" + msg + "</li>");
+	console.log(msg)
+	$(".ex2").append('<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' + msg + '</p><span class="time-left">11:01</span></div>');
 });

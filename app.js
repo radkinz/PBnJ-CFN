@@ -37,9 +37,14 @@ app.get('/chat', (req, res) => {
 })
 
 //display authentication page
-app.get('/login', (req, res) => {
-  res.render('login.html', {})
-})
+app.get('/Auth', function (req, res) {
+  res.render('Auth.html', {});
+});
+
+//display main menu
+app.get('/ButtonMenu', function (req, res) {
+  res.render('buttonmenu.html', {});
+});
 
 //connect new user
 io.on('connection', socket => {

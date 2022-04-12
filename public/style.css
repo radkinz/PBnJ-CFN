@@ -6,13 +6,15 @@
 
 h1 {
   text-align: center;
-  font-size: 50px;
+  color: rgb(98, 79, 161);
+  font-size: 69px;
   width: 100%;
 }
+
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -20,16 +22,18 @@ h1 {
   transform: rotate(-45deg);
   width: 100px;
 }
+
 #background4 {
   margin-right: 250px;
   transform: rotate(45deg);
   width: 100px;
 }
+
 #logo1 {
   width: 250px;
 }
 
-#child {
+#user {
   background-color: #09fbeb;
   border-color: black;
   border-radius: 40px;
@@ -37,7 +41,7 @@ h1 {
   font-family: Generic, serif, Times New Roman;
 }
 
-#adult {
+#admin {
   background-color: lime;
   border-color: black;
   border-radius: 40px;

@@ -5,36 +5,49 @@
     <meta name="viewport" content="width=device-width" />
     <title>replit</title>
     <link href="chat.css" rel="stylesheet" type="text/css" />
-
     <!-- import the webpage's client-side javascript file -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- import socket.io -->
     <script src="/socket.io/socket.io.js"></script>
-
     <script src="client.js" async defer></script>
   </head>
   <body>
     Chats
-
-    <div class="horl1"></div>
-
+    <div class="horline1"></div>
     <div class="new5"></div>
-
-      <div class="ex2"> <div id="chats"></div></div>
-
-    <button id="sned_butt" type="button">Send</button>
-
-    <button id="add_chast" type="button">+</button>
-
-    <form>
-      <input
-        id="messageinpoot"
-        type="text"
-        placeholder="Type message here"
-        id="message"
-        name="message"
-      /><br />
-    </form>
   </body>
+  <body2>
+    <div class="vline"></div>
+    <div class="ex1">
+      <button id="chast1" type="button">New Chat</button>
+
+      <button id="chast2" type="button">New Chat</button>
+    </div>
+  </body2>
+  <body3>
+    <div class="ex2">
+      <div class="container darker">
+        <img src="" alt="Avatar" class="right" style="width:100%;" />
+        <p>Hey! I'm fine. Thanks for asking!</p>
+        <span class="time-left">11:01</span>
+      </div>
+    </div>
+  </body3>
+  <button id="sned_butt" type="button">Send</button>
+
+  <button id="add_chast" type="button">+</button>
+  <form method="GET" action="/ButtonMenu">
+    <input id="back" type="submit" name="submit" value="Back" />
+  </form>
+
+  <form>
+    <input
+      id="messageinpoot"
+      type="text"
+      placeholder="Type message here"
+      id="message"
+      name="message"
+    /><br />
+  </form>
 </html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        background-color: rgb(235, 179, 118);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Button Menu</title>
+    <link href="ButtonMenu.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <form method="GET" action="/">
+        <input id="Logout" type="submit" name="submit" value="Log out" />
+      </form>
+    
+    </div>
+
+    <h1>-PB&J Fund-</h1>
+    <div id="big-container">
+      <div class="container">
+        <form method="GET" action="/chat">
+          <input id="chat" type="submit" name="submit" value="Chat" />
+        </form>
+      </div>
+      <div id="div2">
+        <button id="recipies" type="button">Recipes</button>
+      </div>
+      <div id="div3">
+        <button id="FindFoodbank" type="button">Foodbanks</button>
+      </div>
+    </div>
+
+  </body>
+</html>

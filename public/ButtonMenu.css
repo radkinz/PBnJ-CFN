@@ -1,0 +1,68 @@
+h1 {
+  text-align: center;
+  color: rgb(98, 79, 161);
+  font-size: 69px;
+  width: 100%;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#div2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#div3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#chat {
+  background-color: white;
+  border-color: black;
+  border-radius: 40px;
+  width: 500px;
+  font-size: 50px;
+  font-family: Generic, serif, Times New Roman;
+}
+
+#recipies {
+  background-color: white;
+  border-color: black;
+  border-radius: 40px;
+  width: 500px;
+  font-size: 50px;
+  font-family: Generic, Serif, Times New Roman;
+}
+
+#FindFoodbank {
+  background-color: white;
+  border-color: black;
+  border-radius: 50px;
+  width: 500px;
+  font-size: 50px;
+  font-family: Generic, serif, Times New Roman;
+}
+
+#user:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#admin:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+#FindFoodbank:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

@@ -1,46 +1,39 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <style>
-         body { 
-          background-color: orange; 
-          display: flex;
-          flex-direction: column;
-          justify-content: center; 
-          }
-      </style>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width">
-      <title>replit</title>
-      <link href="style.css" rel="stylesheet" type="text/css" />
-      
-    <!-- import the webpage's client-side javascript file -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- import socket.io -->
-    <script src="/socket.io/socket.io.js"></script>
-   </head>
-   <body>
-      <h1>-PB&J Fund-</h1>
-      <div id="big-container">
-         <div class="container">
-            <img src="/images/health(1).png" id="background4"/>
-            <img src="/images/friendship(1).png" id="background3"/>
-         </div>
-         <div class="container">
-          <form method="GET" action="/chat">
-            <input id="adult" type="submit" name="submit" value="Adult!" />
-          </form>
-            <form method="GET" action="/chat">
-              <input id="child" type="submit" name="submit" value="Kid!" />
-            </form>
-         </div>
-         <div class="container">
-            <img src="/images/education(1).png" id="background1"/>
-            <img src="/images/logo(1).png" id="logo1">
-            <img src="/images/community.png" id="background2"/>
-         </div>
+  <head>
+    <style>
+      body {
+        background-color: rgb(235, 179, 118);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <h1>-PB&J Fund-</h1>
+    <div id="big-container">
+      <div class="container">
+        <img src="images/health(1).png" id="background4" />
+        <img src="images/friendship(1).png" id="background3" />
       </div>
-      <script src="client.js"></script>
-   </body>
+      <div class="container">
+        <form method="GET" action="/Auth">
+          <input id="user" type="submit" name="submit" value="User!" />
+        </form>
+        <form method="GET" action="/Auth">
+          <input id="admin" type="submit" name="submit" value="Admin!" />
+        </form>
+      </div>
+      <div class="container">
+        <img src="images/education(1).png" id="background1" />
+        <img src="images/logo(1).png" id="logo1" />
+        <img src="images/community.png" id="background2" />
+      </div>
+    </div>
+  </body>
 </html>
