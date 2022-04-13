@@ -1,6 +1,13 @@
 const socket = io();
 console.log("hello")
 
+//store session info
+socket.on('sessionStorage', (userid, callback) => {
+	console.log(userid)
+	sessionStorage.setItem('userid', userid);
+	callback("got it");
+});
+
 //receive all chats when connected
 socket.on('allChats', (chats) => {
 	console.log(chats);
@@ -28,22 +35,17 @@ $("#sned_butt").click((event) => {
 	event.preventDefault()
 
 	//send chat from input to server
-	socket.emit("newChat", $("#messageinpoot").val());
+	let userid = sessionStorage.getItem('userid');
+	console.log(userid)
+	socket.emit("newChat", $("#messageinpoot").val(), userid);
 })
 
 //when login button click send to server
 $("#LoginButton").click((event) => {
 	//prevent default refresh page
 	event.preventDefault()
-
-	console.log('button')
-
-	//send chat from input to server
 	socket.emit("login", $("#usernameInput").val(), $("#passwordInput").val());
 })
-
-
-
 
 //receive new chats and append them
 socket.on("newChattoUsers", (msg) => {
