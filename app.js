@@ -126,12 +126,13 @@ io.on('connection', socket => {
   })
 
   //listen for new messages
-  socket.on('newChat', (newChat, userid) => {
+  socket.on('newChat', (newChat, userid, time) => {
     console.log(userid)
     //add chat to database
+    console.log(time)
     connection.query(
-      'INSERT INTO chathistory(chat, userid) VALUES (?, ?);',
-      [newChat, userid],
+      'INSERT INTO chathistory(chat, userid, time) VALUES (?, ?, ?);',
+      [newChat, userid, time],
       err => {
         if (err) console.log(err)
 
