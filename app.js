@@ -72,7 +72,7 @@ io.on('connection', socket => {
         console.log(username, passwordd)
         let UN, password, hashedPassword
         UN = username + ''
-        password = password
+        password = passwordd + ''
         connection.query(
             'SELECT hashword FROM userinfo WHERE username = (?)', [UN],
             (err, result) => {
