@@ -5,6 +5,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 #large-container {
   display: flex;
   flex-direction: column;
@@ -44,6 +45,7 @@ h1 {
   font-size: 40px;
   font-family: Generic, serif, Times New Roman;
 }
+
 #Login:hover {
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
