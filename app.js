@@ -103,11 +103,8 @@ io.on('connection', socket => {
                   //print error
                   if (err) console.log(err)
 
-                  console.log(res[0].userid, res[0].admin)
-
                   //send id to client
                   socket.emit('sessionStorage', res[0], (response) => {
-                    console.log('asdjfs', response)
                     //send true status
                     socket.emit('loginStatus', true)
                   })
@@ -129,18 +126,15 @@ io.on('connection', socket => {
 
   //listen for new messages
   socket.on('newChat', (newChat, userid, time) => {
-    console.log(userid)
     //add chat to database
-    console.log(time)
     connection.query(
       'INSERT INTO chathistory(chat, userid, time) VALUES (?, ?, ?);',
       [newChat, userid, time],
       err => {
         if (err) console.log(err)
 
-        console.log(userid)
         //send out new chat to connected users
-        io.emit('newChattoUsers', newChat)
+        io.emit('newChattoUsers', newChat, time)
       }
     )
   })

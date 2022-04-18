@@ -18,7 +18,7 @@ socket.on('allChats', chats => {
     $('.ex2').append(
       '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
         chats[i].chat +
-        '</p><span class="time-left">11:01</span></div>'
+        '</p><span class="time-left">' + chats[i].time + '</span></div>'
     )
   }
 
@@ -39,7 +39,6 @@ $('#sned_butt').click(event => {
 
   //send chat from input to server
   let userid = sessionStorage.getItem('userid')
-  console.log(userid)
 
   let date_ob = new Date()
 
@@ -57,38 +56,18 @@ $('#sned_butt').click(event => {
   let hours = date_ob.getHours()
 
   // current minutes
-  let minutes = date_ob.getMinutes()
+  let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
 
-  // current seconds
-  let seconds = date_ob.getSeconds()
 
   let finalTime =
-    year +
-    '-' +
-    month +
-    '-' +
-    date +
-    ' ' +
     hours +
     ':' +
     minutes +
-    ':' +
-    seconds
-
-  // prints date & time in YYYY-MM-DD HH:MM:SS format
-  console.log(
-    year +
-      '-' +
-      month +
-      '-' +
-      date +
-      ' ' +
-      hours +
-      ':' +
-      minutes +
-      ':' +
-      seconds
-  )
+    ' ' +
+    month +
+    '-' +
+    date +
+    '-' + year
 
   socket.emit('newChat', $('#messageinpoot').val(), userid, finalTime)
 })
@@ -101,11 +80,18 @@ $('#Login').click(event => {
 })
 
 //receive new chats and append them
-socket.on('newChattoUsers', msg => {
-  console.log(msg)
+socket.on('newChattoUsers', (msg, time) => {
   $('.ex2').append(
     '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
       msg +
-      '</p><span class="time-left">11:01</span></div>'
+      '</p><span class="time-left">'+ time + '</span></div>'
+  )
+
+   //scroll to bottom
+   $('.ex2').animate(
+    {
+      scrollTop: document.getElementsByClassName('ex2')[0].scrollHeight
+    },
+    1200
   )
 })
