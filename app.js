@@ -97,16 +97,16 @@ io.on('connection', socket => {
               //send userid back for session storage
               //match username to userid
               connection.query(
-                'SELECT userid FROM userinfo WHERE username=(?);',
+                'SELECT userid, admin FROM userinfo WHERE username=(?);',
                 [UN],
                 (err, res) => {
                   //print error
                   if (err) console.log(err)
 
-                  console.log(res[0].userid)
+                  console.log(res[0].userid, res[0].admin)
 
                   //send id to client
-                  socket.emit('sessionStorage', res[0].userid, (response) => {
+                  socket.emit('sessionStorage', res[0], (response) => {
                     console.log('asdjfs', response)
                     //send true status
                     socket.emit('loginStatus', true)

@@ -2,9 +2,10 @@ const socket = io()
 console.log('hello')
 
 //store session info
-socket.on('sessionStorage', (userid, callback) => {
-  console.log(userid)
-  sessionStorage.setItem('userid', userid)
+socket.on('sessionStorage', (res, callback) => {
+  console.log(res.userid, res.admin)
+  sessionStorage.setItem('userid', res.userid)
+  sessionStorage.setItem('admin', res.admin)
   callback('got it')
 })
 
