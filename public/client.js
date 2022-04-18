@@ -93,7 +93,7 @@ $('#sned_butt').click(event => {
 })
 
 //when login button click send to server
-$('#LoginButton').click(event => {
+$('#Login').click(event => {
   //prevent default refresh page
   event.preventDefault()
   socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
