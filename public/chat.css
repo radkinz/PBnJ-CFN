@@ -1,73 +1,83 @@
+
 body {
   margin-left: 70px;
   font-size: 25px;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgb(110, 85, 158);
+  color: rgb(110,85,158)
 }
 body2 {
-  margin-left: 70px;
+   margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
-  font-family: Arial, sans-serif, sans-serif;
+  font-family: Arial,sans-serif, sans-serif;
   color: black;
 }
 body3 {
-  margin-left: 70px;
+   margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
-  font-family: Arial, sans-serif, sans-serif;
+  font-family: Arial,sans-serif, sans-serif;
   color: black;
 }
-#sned_butt {
-  background-color: rgb(14, 214, 37);
+#sned_butt{
+  background-color: rgb(14,214,37);
   border-color: black;
   border-radius: 40px;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  bottom: 0%;
+  right: -7%;
 }
 
-#add_chast {
+#add_chast{
   border-color: black;
   background-color: white;
   border-radius: 6px;
-  top: -36px;
-  right: 50px;
-  position: relative;
+top: -36px;
+right: 50px;
+    position: relative; 
+  
 }
 #add_chast:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #back {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
+ margin-left: -50px;
+  top: -65px;
 }
 
-#messageinpoot {
-  width: 50%;
-  position: absolute;
-  right: 2px;
-  bottom: 0px;
+#messageinpoott, #messageinpoot{
+  display: flex; 
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
 
+
+width: 50%;
+  position: fixed;
+right:    4%;
+bottom:   0%;
+
+  
   font-size: 20px;
   border-radius: 37px;
   border-color: black;
 }
+
+
 
 .horline1 {
   border: 1px solid black;
   border-radius: 5px;
   position: relative;
   top: 5px;
-  margin-left: -72px;
-  max-width: 39%;
+ margin-left: 25%;
+
 }
 
-.vline {
+/*.vline {
   border-left: 1px solid black;
   height: 100%;
   position: absolute;
@@ -75,6 +85,7 @@ body3 {
   margin-left: -100px;
   top: 0;
 }
+*/
 
 div.ex1 {
   background-color: rgb(235, 179, 118);
@@ -90,44 +101,46 @@ div.ex2 {
   background-color: white;
   border-radius: 1px;
   position: absolute;
-  top: 1px;
+  top: 60px;
   right: 1px;
   width: 65%;
   height: 97%;
   overflow: scroll;
 }
 
-#chast1 {
+#chast1{
   border-color: black;
   background-color: rgb(235, 179, 118);
   border-radius: 6px;
-  position: relative;
+  position: relative; 
   height: 55px;
-  width: 100%;
+  width: 100%; 
 }
 
 #chast1:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#chast2 {
+#chast2{
   border-color: black;
   background-color: rgb(235, 179, 118);
   border-radius: 6px;
-  position: relative;
+  position: relative; 
   height: 55px;
-  width: 100%;
+  width: 100%; 
 }
 
 #chast2:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+#back {
+  left: 0px;
+
+}
 .container {
   border: 2px solid #dedede;
-  background-color: rgb(53, 121, 244);
+  background-color: rgb(53,121,244);
   border-radius: 50px;
   padding: 10px;
   margin: 10px 0;
@@ -136,12 +149,12 @@ div.ex2 {
 /* Darker chat container */
 .darker {
   border-color: #ccc;
-  background-color: rgb(233, 233, 235);
+  background-color: rgb(233,233,235);
 }
 
 /* Clear floats */
 .container::after {
-  content: '';
+  content: "";
   clear: both;
   display: table;
 }
@@ -159,7 +172,7 @@ div.ex2 {
 .container img.right {
   float: right;
   margin-left: 20px;
-  margin-right: 0;
+  margin-right:0;
 }
 
 /* Style time text */
