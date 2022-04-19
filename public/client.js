@@ -26,9 +26,15 @@ socket.on('allChats', chats => {
   let status = sessionStorage.getItem('admin')
   console.log(status, typeof(status))
   if (status !== '1') {
-    console.log('piss my pants')
     $('#messageinpoott').hide();
   }
+
+  $('.ex2').animate(
+    {
+            scrollTop: $('.ex2').prop('scrollHeight')
+    },
+    1200
+  )
 })
 //check user login status
 socket.on('loginStatus', status => {
