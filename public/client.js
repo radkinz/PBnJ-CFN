@@ -22,7 +22,13 @@ socket.on('allChats', chats => {
     )
   }
 
-  console.log($('.ex2'))
+  //hide input
+  let status = sessionStorage.getItem('admin')
+  console.log(status, typeof(status))
+  if (status !== '1') {
+    console.log('piss my pants')
+    $('#messageinpoott').hide();
+  }
 })
 //check user login status
 socket.on('loginStatus', status => {
