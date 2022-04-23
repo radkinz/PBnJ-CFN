@@ -5,9 +5,7 @@ const bcrypt = require('bcrypt')
 const http = require('http')
 const app = express()
 const server = http.createServer(app)
-const {
-    Server
-} = require('socket.io')
+const { Server } = require('socket.io')
 const io = new Server(server)
 const bodyParser = require('body-parser')
 const mysql = require('mysql2')
@@ -56,13 +54,16 @@ app.get('/ButtonMenu', function (req, res) {
 
 //connect new user
 io.on('connection', socket => {
-  //send new user all chat messages from database
-  connection.query('SELECT * FROM chathistory;', (err, res) => {
-    //print error
-    if (err) console.log(err)
+  socket.on('allChats', chatroomId => {
+    console.log(chatroomId)
+    //send new user all chat messages from database
+    connection.query('SELECT * FROM chathistory WHERE chatroomid = ?;', [chatroomId], (err, res) => {
+      //print error
+      if (err) console.log(err)
 
-    //send new chat to all connected users
-    socket.emit('allChats', res)
+      //send new chat to all connected users
+      socket.emit('DisplayallChats', res)
+    })
   })
 
   //login
@@ -104,7 +105,7 @@ io.on('connection', socket => {
                   if (err) console.log(err)
 
                   //send id to client
-                  socket.emit('sessionStorage', res[0], (response) => {
+                  socket.emit('sessionStorage', res[0], response => {
                     //send true status
                     socket.emit('loginStatus', true)
                   })
@@ -125,11 +126,11 @@ io.on('connection', socket => {
   })
 
   //listen for new messages
-  socket.on('newChat', (newChat, userid, time) => {
+  socket.on('newChat', (newChat, userid, time, chatroomid) => {
     //add chat to database
     connection.query(
-      'INSERT INTO chathistory(chat, userid, time) VALUES (?, ?, ?);',
-      [newChat, userid, time],
+      'INSERT INTO chathistory(chat, userid, time, chatroomid) VALUES (?, ?, ?, ?);',
+      [newChat, userid, time, chatroomid],
       err => {
         if (err) console.log(err)
 

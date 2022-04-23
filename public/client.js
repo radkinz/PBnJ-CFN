@@ -1,41 +1,50 @@
 const socket = io()
 console.log('hello')
+sessionStorage.setItem('chatroom', 0)
 
 //store session info
 socket.on('sessionStorage', (res, callback) => {
-  console.log(res.userid, res.admin)
+  //set session storage values
   sessionStorage.setItem('userid', res.userid)
   sessionStorage.setItem('admin', res.admin)
   callback('got it')
 })
 
-//receive all chats when connected
-socket.on('allChats', chats => {
-  console.log(chats)
+//grab all chats
+getAllChats()
+function getAllChats () {
+  socket.emit('allChats', sessionStorage.getItem('chatroom'))
+}
 
-  //display chat array
-  for (let i = 0; i < chats.length; i++) {
-    $('.ex2').append(
-      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-        chats[i].chat +
-        '</p><span class="time-left">' + chats[i].time + '</span></div>'
+  socket.on('DisplayallChats', chats => {
+    console.log(chats)
+
+    //display chat array
+    for (let i = 0; i < chats.length; i++) {
+      $('.ex2').append(
+        '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
+          chats[i].chat +
+          '</p><span class="time-left">' +
+          chats[i].time +
+          '</span></div>'
+      )
+    }
+
+    //hide input
+    let status = sessionStorage.getItem('admin')
+    console.log(status, typeof status)
+    if (status !== '1') {
+      $('#messageinpoott').hide()
+    }
+
+    $('.ex2').animate(
+      {
+        scrollTop: $('.ex2').prop('scrollHeight')
+      },
+      1200
     )
-  }
+  })
 
-  //hide input
-  let status = sessionStorage.getItem('admin')
-  console.log(status, typeof(status))
-  if (status !== '1') {
-    $('#messageinpoott').hide();
-  }
-
-  $('.ex2').animate(
-    {
-            scrollTop: $('.ex2').prop('scrollHeight')
-    },
-    1200
-  )
-})
 //check user login status
 socket.on('loginStatus', status => {
   if (status) {
@@ -70,18 +79,17 @@ $('#sned_butt').click(event => {
   // current minutes
   let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
 
+  let finalTime = hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
 
-  let finalTime =
-    hours +
-    ':' +
-    minutes +
-    ' ' +
-    month +
-    '-' +
-    date +
-    '-' + year
+  let chatroomid = sessionStorage.getItem('chatroom')
 
-  socket.emit('newChat', $('#messageinpoot').val(), userid, finalTime)
+  socket.emit(
+    'newChat',
+    $('#messageinpoot').val(),
+    userid,
+    finalTime,
+    chatroomid
+  )
 })
 
 //when login button click send to server
@@ -96,11 +104,13 @@ socket.on('newChattoUsers', (msg, time) => {
   $('.ex2').append(
     '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
       msg +
-      '</p><span class="time-left">'+ time + '</span></div>'
+      '</p><span class="time-left">' +
+      time +
+      '</span></div>'
   )
 
-   //scroll to bottom
-   $('.ex2').animate(
+  //scroll to bottom
+  $('.ex2').animate(
     {
       scrollTop: document.getElementsByClassName('ex2')[0].scrollHeight
     },
