@@ -108,7 +108,7 @@ div.ex2 {
   overflow: scroll;
 }
 
-#chast1{
+.chatroombutton{
   border-color: black;
   background-color: rgb(235, 179, 118);
   border-radius: 6px;
@@ -117,11 +117,11 @@ div.ex2 {
   width: 100%; 
 }
 
-#chast1:hover {
+.chatroombutton:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-#chast2{
+.chatroombutton{
   border-color: black;
   background-color: rgb(235, 179, 118);
   border-radius: 6px;
@@ -130,7 +130,7 @@ div.ex2 {
   width: 100%; 
 }
 
-#chast2:hover {
+.chatroombutton:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 

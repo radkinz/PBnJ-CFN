@@ -29,27 +29,28 @@ app.use(
 app.use(bodyParser.json())
 app.use(express.static('public'))
 var engines = require('consolidate')
+const { nextTick } = require('process')
 app.engine('html', engines.hogan)
 app.set('views', __dirname + '/views')
 
 //display the home page
 app.get('/', (req, res) => {
-  res.render('index.html', {})
+  res.render('index.html')
 })
 
 //display chat page
 app.get('/chat', (req, res) => {
-  res.render('chat.html', {})
+  res.render('chat.html')
 })
 
 //display authentication page
 app.get('/Auth', function (req, res) {
-  res.render('Auth.html', {})
+  res.render('Auth.html')
 })
 
 //display main menu
 app.get('/ButtonMenu', function (req, res) {
-  res.render('buttonmenu.html', {})
+  res.render('buttonmenu.html')
 })
 
 //connect new user
@@ -63,6 +64,17 @@ io.on('connection', socket => {
 
       //send new chat to all connected users
       socket.emit('DisplayallChats', res)
+    })
+  })
+
+  socket.on('grabUserIds', () => {
+    connection.query('SELECT userid FROM userinfo WHERE admin = 0;', (err, ids) => {
+      //print error
+      if (err) console.log(err)
+  
+      //send new chat to all connected users
+      console.log(ids, 'hola')
+      socket.emit('handleUserIds', ids)
     })
   })
 
@@ -106,6 +118,7 @@ io.on('connection', socket => {
 
                   //send id to client
                   socket.emit('sessionStorage', res[0], response => {
+                    console.log(response)
                     //send true status
                     socket.emit('loginStatus', true)
                   })
