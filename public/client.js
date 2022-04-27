@@ -177,7 +177,7 @@ $('#sned_butt').click(event => {
   let finalTime = hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
 
   let chatroomid = sessionStorage.getItem('chatroom')
-
+  
   socket.emit(
     'newChat',
     $('#messageinpoot').val(),
@@ -185,6 +185,7 @@ $('#sned_butt').click(event => {
     finalTime,
     chatroomid
   )
+  $('#messageinpoot').val('');
 })
 
 //when login button click send to server
