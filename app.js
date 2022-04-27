@@ -49,6 +49,10 @@ app.get('/Auth', function (req, res) {
   res.render('Auth.html', {})
 })
 
+app.get('/create', function (req, res) {
+  res.render("createUser.html", {})
+})
+
 //display main menu
 app.get('/ButtonMenu', function (req, res) {
   res.render('buttonmenu.html', {})
