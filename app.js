@@ -5,9 +5,7 @@ const bcrypt = require('bcrypt')
 const http = require('http')
 const app = express()
 const server = http.createServer(app)
-const {
-    Server
-} = require('socket.io')
+const { Server } = require('socket.io')
 const io = new Server(server)
 const bodyParser = require('body-parser')
 const mysql = require('mysql2')
@@ -31,22 +29,23 @@ app.use(
 app.use(bodyParser.json())
 app.use(express.static('public'))
 var engines = require('consolidate')
+const { nextTick } = require('process')
 app.engine('html', engines.hogan)
 app.set('views', __dirname + '/views')
 
 //display the home page
 app.get('/', (req, res) => {
-  res.render('index.html', {})
+  res.render('index.html')
 })
 
 //display chat page
 app.get('/chat', (req, res) => {
-  res.render('chat.html', {})
+  res.render('chat.html')
 })
 
 //display authentication page
 app.get('/Auth', function (req, res) {
-  res.render('Auth.html', {})
+  res.render('Auth.html')
 })
 
 app.get('/create', function (req, res) {
@@ -55,18 +54,32 @@ app.get('/create', function (req, res) {
 
 //display main menu
 app.get('/ButtonMenu', function (req, res) {
-  res.render('buttonmenu.html', {})
+  res.render('buttonmenu.html')
 })
 
 //connect new user
 io.on('connection', socket => {
-  //send new user all chat messages from database
-  connection.query('SELECT * FROM chathistory;', (err, res) => {
-    //print error
-    if (err) console.log(err)
+  socket.on('allChats', chatroomId => {
+    console.log(chatroomId)
+    //send new user all chat messages from database
+    connection.query('SELECT * FROM chathistory WHERE chatroomid = ?;', [chatroomId], (err, res) => {
+      //print error
+      if (err) console.log(err)
 
-    //send new chat to all connected users
-    socket.emit('allChats', res)
+      //send new chat to all connected users
+      socket.emit('DisplayallChats', res)
+    })
+  })
+
+  socket.on('grabUserIds', () => {
+    connection.query('SELECT userid FROM userinfo WHERE admin = 0;', (err, ids) => {
+      //print error
+      if (err) console.log(err)
+  
+      //send new chat to all connected users
+      console.log(ids, 'hola')
+      socket.emit('handleUserIds', ids)
+    })
   })
 
   //login
@@ -108,7 +121,8 @@ io.on('connection', socket => {
                   if (err) console.log(err)
 
                   //send id to client
-                  socket.emit('sessionStorage', res[0], (response) => {
+                  socket.emit('sessionStorage', res[0], response => {
+                    console.log(response)
                     //send true status
                     socket.emit('loginStatus', true)
                   })
@@ -129,11 +143,11 @@ io.on('connection', socket => {
   })
 
   //listen for new messages
-  socket.on('newChat', (newChat, userid, time) => {
+  socket.on('newChat', (newChat, userid, time, chatroomid) => {
     //add chat to database
     connection.query(
-      'INSERT INTO chathistory(chat, userid, time) VALUES (?, ?, ?);',
-      [newChat, userid, time],
+      'INSERT INTO chathistory(chat, userid, time, chatroomid) VALUES (?, ?, ?, ?);',
+      [newChat, userid, time, chatroomid],
       err => {
         if (err) console.log(err)
 
