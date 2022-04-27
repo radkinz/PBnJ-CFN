@@ -150,29 +150,29 @@ $('#chast1').click(event => {
 
 //send new chats when button is clicked
 $('#sned_butt').click(event => {
-  //prevent default refresh page
-  event.preventDefault()
+    //prevent default refresh page
+    event.preventDefault()
 
-  //send chat from input to server
-  let userid = sessionStorage.getItem('userid')
+    //send chat from input to server
+    let userid = sessionStorage.getItem('userid')
 
-  let date_ob = new Date()
+    let date_ob = new Date()
 
-  // current date
-  // adjust 0 before single digit date
-  let date = ('0' + date_ob.getDate()).slice(-2)
+    // current date
+    // adjust 0 before single digit date
+    let date = ('0' + date_ob.getDate()).slice(-2)
 
-  // current month
-  let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
+    // current month
+    let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
 
-  // current year
-  let year = date_ob.getFullYear()
+    // current year
+    let year = date_ob.getFullYear()
 
-  // current hours
-  let hours = date_ob.getHours()
+    // current hours
+    let hours = date_ob.getHours()
 
-  // current minutes
-  let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
+    // current minutes
+    let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
 
   let finalTime = hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
 
@@ -188,11 +188,14 @@ $('#sned_butt').click(event => {
   $('#messageinpoot').val('');
 })
 
+//creating a new account (username, password, admin status)
+
+
 //when login button click send to server
 $('#Login').click(event => {
-  //prevent default refresh page
-  event.preventDefault()
-  socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
+    //prevent default refresh page
+    event.preventDefault()
+    socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
 })
 
 //receive new chats and append them
@@ -213,3 +216,4 @@ socket.on('newChattoUsers', (msg, time) => {
     1200
   )
 })
+

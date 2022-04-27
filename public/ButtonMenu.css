@@ -35,6 +35,7 @@ h1 {
 }
 
 #recipies {
+  text-decoration: none;
   background-color: white;
   border-color: black;
   border-radius: 40px;
@@ -42,6 +43,8 @@ h1 {
   font-size: 50px;
   font-family: Generic, Serif, Times New Roman;
   margin-top: 5px;
+  text-align: center;
+  color: black;
 }
 
 #FindFoodbank {
