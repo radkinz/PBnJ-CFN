@@ -38,6 +38,10 @@ app.get('/', (req, res) => {
   res.render('index.html')
 })
 
+app.get('/AdminMenu', (req, res) => {
+  res.render('AdminMenu.html')
+})
+
 //display chat page
 app.get('/chat', (req, res) => {
   res.render('chat.html')
@@ -49,7 +53,7 @@ app.get('/Auth', function (req, res) {
 })
 
 app.get('/create', function (req, res) {
-  res.render("createUser.html", {})
+  res.render('createUser.html', {})
 })
 
 //display main menu
@@ -62,24 +66,31 @@ io.on('connection', socket => {
   socket.on('allChats', chatroomId => {
     console.log(chatroomId)
     //send new user all chat messages from database
-    connection.query('SELECT * FROM chathistory WHERE chatroomid = ?;', [chatroomId], (err, res) => {
-      //print error
-      if (err) console.log(err)
+    connection.query(
+      'SELECT * FROM chathistory WHERE chatroomid = ?;',
+      [chatroomId],
+      (err, res) => {
+        //print error
+        if (err) console.log(err)
 
-      //send new chat to all connected users
-      socket.emit('DisplayallChats', res)
-    })
+        //send new chat to all connected users
+        socket.emit('DisplayallChats', res)
+      }
+    )
   })
 
   socket.on('grabUserIds', () => {
-    connection.query('SELECT userid FROM userinfo WHERE admin = 0;', (err, ids) => {
-      //print error
-      if (err) console.log(err)
-  
-      //send new chat to all connected users
-      console.log(ids, 'hola')
-      socket.emit('handleUserIds', ids)
-    })
+    connection.query(
+      'SELECT userid FROM userinfo WHERE admin = 0;',
+      (err, ids) => {
+        //print error
+        if (err) console.log(err)
+
+        //send new chat to all connected users
+        console.log(ids, 'hola')
+        socket.emit('handleUserIds', ids)
+      }
+    )
   })
 
   //login
@@ -122,9 +133,12 @@ io.on('connection', socket => {
 
                   //send id to client
                   socket.emit('sessionStorage', res[0], response => {
-                    console.log(response)
                     //send true status
-                    socket.emit('loginStatus', true)
+                    if (res[0].admin !== 1) {
+                      socket.emit('loginStatus', true, 0)
+                    } else {
+                      socket.emit('loginStatus', true, 1)
+                    }
                   })
                 }
               )

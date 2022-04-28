@@ -75,6 +75,7 @@ function getAllChats () {
   socket.emit('allChats', sessionStorage.getItem('chatroom'))
 }
 
+
 socket.on('DisplayallChats', chats => {
   console.log(chats)
   console.log(sessionStorage.getItem('chatroomList'), 'fsdf')
@@ -116,9 +117,15 @@ socket.on('DisplayallChats', chats => {
 })
 
 //check user login status
-socket.on('loginStatus', status => {
+socket.on('loginStatus', (status, adminStatus) => {
   if (status) {
-    window.location = '/ButtonMenu'
+    console.log(adminStatus, typeof(adminStatus))
+    if (adminStatus == 1) {
+      window.location = '/ButtonMenu?status=1'
+    } else {
+      window.location = '/ButtonMenu?status=0'
+    }
+ 
   } else {
     alert('Incorrect username or password. Please try again.')
   }
@@ -216,4 +223,3 @@ socket.on('newChattoUsers', (msg, time) => {
     1200
   )
 })
-
