@@ -121,30 +121,22 @@ socket.on('loginStatus', (status, adminStatus) => {
   }
 })
 
+$('#back').click(function() {
+  let adminStatus = sessionStorage.getItem('admin')
+  
+    if (adminStatus == '1') {
+      window.location = '/ButtonMenu?status=1'
+    } else {
+      window.location = '/ButtonMenu?status=0'
+    }
+  
+})
+
 //grab chatroom id
 function reply_click (clicked_id) {
   sessionStorage.setItem('chatroom', clicked_id)
   getAllChats()
 }
-
-$('#chast2').click(event => {
-  let userID = sessionStorage.getItem('userid')
-  console.log(this)
-  //change chatroom id to user id
-  sessionStorage.setItem('chatroom', userID)
-
-  //get new chats
-  getAllChats()
-})
-
-//restore chatroom 0
-$('#chast1').click(event => {
-  sessionStorage.setItem('chatroom', 0)
-
-  //get new chats
-  getAllChats()
-})
-
 //send new chats when button is clicked
 $('#sned_butt').click(event => {
   //prevent default refresh page

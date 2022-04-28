@@ -52,13 +52,21 @@ app.get('/Auth', function (req, res) {
   res.render('Auth.html')
 })
 
-app.get('/create', function (req, res) {
-  res.render('createUser.html', {})
+app.get('/AdminMenu', function (req, res) {
+  res.render('AdminMenu.html', {})
 })
 
 //display main menu
 app.get('/ButtonMenu', function (req, res) {
   res.render('buttonmenu.html')
+})
+
+app.get('/AccountCreation', function (req, res) {
+  res.render('createUser.html')
+})
+
+app.get('/AccountDelete', function (req, res) {
+  res.render('deleteUser.html')
 })
 
 //connect new user
