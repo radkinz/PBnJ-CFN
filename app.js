@@ -134,6 +134,7 @@ io.on('connection', socket => {
                   //send id to client
                   socket.emit('sessionStorage', res[0], response => {
                     //send true status
+                    console.log(response)
                     if (res[0].admin !== 1) {
                       socket.emit('loginStatus', true, 0)
                     } else {
