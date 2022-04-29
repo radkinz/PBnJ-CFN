@@ -48,13 +48,24 @@ app.get('/Auth', function (req, res) {
   res.render('Auth.html')
 })
 
+//display account creation page
 app.get('/create', function (req, res) {
   res.render("createUser.html", {})
+})
+
+//display account delete page
+app.get('/delete', function (req, res) {
+  res.render("deleteUser.html", {})
 })
 
 //display main menu
 app.get('/ButtonMenu', function (req, res) {
   res.render('buttonmenu.html')
+})
+
+//display account management page
+app.get('/accManage', function (req, res) {
+  res.render('AdminMenu.html')
 })
 
 //connect new user

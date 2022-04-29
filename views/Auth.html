@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Login-In</title>
-    <link rel="stylesheet" type="text/css" href="Auth.css" />
-       <!-- import the webpage's client-side javascript file -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <!-- import socket.io -->
-    <script src="/socket.io/socket.io.js"></script>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Login-In</title>
+  <link rel="stylesheet" type="text/css" href="Auth.css" />
+  <!-- import the webpage's client-side javascript file -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- import socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
 
-  <body>
-    <h1>-PB&J Fund-</h1>
-    <div id="large-container">
-      
-        <input id = "usernameInput" type="text" placeholder="Username" name="username" /><br />
+<body>
+  <h1>-PB&J Fund-</h1>
+  <div id="large-container">
 
-        <input id = "passwordInput"  type="password" placeholder="Password" name="password" /><br />
-        <div id="Login">
-          <button id="Login">Log In!</button>
-        </div>
-      
+    <input id = "usernameInput" type="text" placeholder="Username" name="username" /><br />
+
+    <input id = "passwordInput"  type="password" placeholder="Password" name="password" /><br />
+    <div id="Login">
+      <button id="Login">Log In!</button>
     </div>
-    <script src="client.js" async defer></script>
-  </body>
+
+  </div>
+  <script src="client.js" async defer></script>
+</body>
 </html>
