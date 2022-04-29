@@ -121,15 +121,14 @@ socket.on('loginStatus', (status, adminStatus) => {
   }
 })
 
-$('#back').click(function() {
+$('#back').click(function () {
   let adminStatus = sessionStorage.getItem('admin')
-  
-    if (adminStatus == '1') {
-      window.location = '/ButtonMenu?status=1'
-    } else {
-      window.location = '/ButtonMenu?status=0'
-    }
-  
+
+  if (adminStatus == '1') {
+    window.location = '/ButtonMenu?status=1'
+  } else {
+    window.location = '/ButtonMenu?status=0'
+  }
 })
 
 //grab chatroom id
