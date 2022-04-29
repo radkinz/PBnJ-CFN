@@ -1,72 +1,67 @@
 const socket = io()
 console.log('hello')
 sessionStorage.setItem('chatroom', 0)
+sessionStorage.setItem('chatroomList', [0])
 
 //store session info
 socket.on('sessionStorage', (res, callback) => {
   //set session storage values
   sessionStorage.setItem('userid', res.userid)
   sessionStorage.setItem('admin', res.admin)
-
-  //create chatroom objs
-  let chatrooms = []
-  //set home page
-  chatrooms.push(0)
-  if (res.admin == '1') {
-    //grab all user ids
-    socket.emit('grabUserIds')
-    socket.on('handleUserIds', data => {
-      console.log(data)
-      for (let i = 0; i < data.length; i++) {
-        chatrooms.push(data[i].userid)
-      }
-      //store chatroom listing
-      chatrooms = JSON.stringify(chatrooms)
-      sessionStorage.setItem('chatroomList', chatrooms)
-      callback('done!')
-    })
-  } else {
-    chatrooms.push(res.userid)
-    chatrooms = JSON.stringify(chatrooms)
-    sessionStorage.setItem('chatroomList', chatrooms)
-    callback('done!')
-  }
+  callback('done!')
 })
 
 //display all chatrooms
 function DisplayAllChatrooms () {
-  let chatrooms = JSON.parse(sessionStorage.getItem('chatroomList'))
+  $('.ex1').html(' ')
 
-  //add homepage
-  $('.ex1').append(
-    '<button class="chatroombutton" id="' +
-      0 +
-      '" onClick="reply_click(' +
-      0 +
-      ')">Bulletin Board</button>'
-  )
-if (sessionStorage.getItem('admin') == '1') {
-  for (let i = 1; i < chatrooms.length; i++) {
+  if (sessionStorage.getItem('admin') == '1') {
+    //grab all user ids
+    socket.emit('grabUserIds')
+    socket.on('handleUserIds', data => {
+      $('.ex1').html(' ')
+
+      //add homepage
+      $('.ex1').append(
+        '<button class="chatroombutton" id="' +
+          0 +
+          '" onClick="reply_click(' +
+          0 +
+          ')">Bulletin Board</button>'
+      )
+
+      for (let i = 0; i < data.length; i++) {
+        // chatrooms.push(data[i].userid)
+        console.log(data[i])
+        $('.ex1').append(
+          '<button class="chatroombutton" id="' +
+            data[i].userid +
+            '" onClick="reply_click(' +
+            data[i].userid +
+            ')"> User: ' +
+            data[i].userid +
+            '</button>'
+        )
+      }
+    })
+  } else {
+    //add homepage
     $('.ex1').append(
       '<button class="chatroombutton" id="' +
-        chatrooms[i] +
+        0 +
         '" onClick="reply_click(' +
-        chatrooms[i] +
-        ')"> User: ' +
-        chatrooms[i] +
-        '</button>'
+        0 +
+        ')">Bulletin Board</button>'
+    )
+
+    $('.ex1').append(
+      '<button class="chatroombutton" id="' +
+        sessionStorage.getItem('userid') +
+        '" onClick="reply_click(' +
+        sessionStorage.getItem('userid') +
+        ')"> Your private messages with PBnJ </button>'
     )
   }
-} else {
-  $('.ex1').append(
-    '<button class="chatroombutton" id="' +
-      chatrooms[1] +
-      '" onClick="reply_click(' +
-      chatrooms[1] +
-      ')"> Your private messages with PBnJ </button>'
-  )
-}
-
 }
 
 //grab all chats
@@ -76,9 +71,6 @@ function getAllChats () {
 }
 
 socket.on('DisplayallChats', chats => {
-  console.log(chats)
-  console.log(sessionStorage.getItem('chatroomList'), 'fsdf')
-
   //delete chats to start
   $('.ex1').html(' ')
   $('.ex2').html(' ')
@@ -116,12 +108,28 @@ socket.on('DisplayallChats', chats => {
 })
 
 //check user login status
-socket.on('loginStatus', status => {
+socket.on('loginStatus', (status, adminStatus) => {
   if (status) {
-    window.location = '/ButtonMenu'
+    console.log(adminStatus, typeof adminStatus)
+    if (adminStatus == 1) {
+      window.location = '/ButtonMenu?status=1'
+    } else {
+      window.location = '/ButtonMenu?status=0'
+    }
   } else {
     alert('Incorrect username or password. Please try again.')
   }
+})
+
+$('#back').click(function() {
+  let adminStatus = sessionStorage.getItem('admin')
+  
+    if (adminStatus == '1') {
+      window.location = '/ButtonMenu?status=1'
+    } else {
+      window.location = '/ButtonMenu?status=0'
+    }
+  
 })
 
 //grab chatroom id
@@ -129,55 +137,36 @@ function reply_click (clicked_id) {
   sessionStorage.setItem('chatroom', clicked_id)
   getAllChats()
 }
-
-$('#chast2').click(event => {
-  let userID = sessionStorage.getItem('userid')
-  console.log(this)
-  //change chatroom id to user id
-  sessionStorage.setItem('chatroom', userID)
-
-  //get new chats
-  getAllChats()
-})
-
-//restore chatroom 0
-$('#chast1').click(event => {
-  sessionStorage.setItem('chatroom', 0)
-
-  //get new chats
-  getAllChats()
-})
-
 //send new chats when button is clicked
 $('#sned_butt').click(event => {
-    //prevent default refresh page
-    event.preventDefault()
+  //prevent default refresh page
+  event.preventDefault()
 
-    //send chat from input to server
-    let userid = sessionStorage.getItem('userid')
+  //send chat from input to server
+  let userid = sessionStorage.getItem('userid')
 
-    let date_ob = new Date()
+  let date_ob = new Date()
 
-    // current date
-    // adjust 0 before single digit date
-    let date = ('0' + date_ob.getDate()).slice(-2)
+  // current date
+  // adjust 0 before single digit date
+  let date = ('0' + date_ob.getDate()).slice(-2)
 
-    // current month
-    let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
+  // current month
+  let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
 
-    // current year
-    let year = date_ob.getFullYear()
+  // current year
+  let year = date_ob.getFullYear()
 
-    // current hours
-    let hours = date_ob.getHours()
+  // current hours
+  let hours = date_ob.getHours()
 
-    // current minutes
-    let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
+  // current minutes
+  let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
 
   let finalTime = hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
 
   let chatroomid = sessionStorage.getItem('chatroom')
-  
+
   socket.emit(
     'newChat',
     $('#messageinpoot').val(),
@@ -185,17 +174,16 @@ $('#sned_butt').click(event => {
     finalTime,
     chatroomid
   )
-  $('#messageinpoot').val('');
+  $('#messageinpoot').val('')
 })
 
 //creating a new account (username, password, admin status)
 
-
 //when login button click send to server
 $('#Login').click(event => {
-    //prevent default refresh page
-    event.preventDefault()
-    socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
+  //prevent default refresh page
+  event.preventDefault()
+  socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
 })
 
 //receive new chats and append them
@@ -216,4 +204,3 @@ socket.on('newChattoUsers', (msg, time) => {
     1200
   )
 })
-

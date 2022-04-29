@@ -7,33 +7,31 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-
-    }
-
-}
-</style>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>replit</title>
-<link href="AdminMenu.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>replit</title>
+    <link href="AdminMenu.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
     <div>
-        <button id = "Logout" type="button">Log out</button>  
+      <button id="Logout" type="button">Log out</button>
     </div>
+
     <h1>Account Managment</h1>
     <div id="big-container">
-        <div class="container">
-            <form method="GET" action="/create">
-                <input id="user" type="submit" name="submit" value="Create Account"></input>
-            </form>
-        </div>
-        <div id="div2">
-            <a href="http://localhost:6969/AccountDelete">
-                <button id= "admin"type="button">Delete Account</button>
-            </a>
-        </div>
+      <div class="container">
+        <a href="/AccountCreation">
+          <button id="user" type="button">Create Account</button>
+        </a>
+      </div>
+      <div id="div2">
+        <a href="/AccountDelete">
+          <button id="admin" type="button">Delete Account</button>
+        </a>
+      </div>
     </div>
-    <script src="script.js"></script>
-</body>
+    <script src="client.js"></script>
+  </body>
 </html>
