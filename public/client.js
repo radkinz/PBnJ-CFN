@@ -3,6 +3,17 @@ console.log('hello')
 sessionStorage.setItem('chatroom', 0)
 sessionStorage.setItem('chatroomList', [0])
 
+//notification stuff
+let permission = Notification.permission
+
+function showNotification (body) {
+  var notification = new Notification('You received a new chat!', { body })
+  notification.onclick = () => {
+    notification.close()
+    window.parent.focus()
+  }
+}
+
 //store session info
 socket.on('sessionStorage', (res, callback) => {
   //set session storage values
@@ -186,7 +197,33 @@ $('#Login').click(event => {
 })
 
 //receive new chats and append them
-socket.on('newChattoUsers', (msg, time) => {
+socket.on('newChattoUsers', (msg, time, senderid) => {
+  console.log(
+    senderid,
+    sessionStorage.getItem('userid'),
+    sessionStorage.getItem('admin'),
+    sessionStorage.getItem('userid') == senderid,
+    sessionStorage.getItem('admin') == '1'
+  )
+  console.log(typeof sessionStorage.getItem('userid'), typeof senderid)
+  if (
+    sessionStorage.getItem('userid') !== senderid ||
+    sessionStorage.getItem('admin') == '1'
+  ) {
+    if (
+      sessionStorage.getItem('userid') == senderid &&
+      sessionStorage.getItem('admin') == '1'
+    ) {
+      console.log('admin is sender')
+    } else {
+
+      if (Notification.permission == 'granted') {
+        showNotification(msg)
+      }
+    }
+
+  }
+
   $('.ex2').append(
     '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
       msg +

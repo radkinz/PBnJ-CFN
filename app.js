@@ -180,7 +180,7 @@ io.on('connection', socket => {
         if (err) console.log(err)
 
         //send out new chat to connected users
-        io.emit('newChattoUsers', newChat, time)
+        io.emit('newChattoUsers', newChat, time, userid)
       }
     )
   })
