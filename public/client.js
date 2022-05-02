@@ -43,14 +43,14 @@ function DisplayAllChatrooms () {
 
       for (let i = 0; i < data.length; i++) {
         // chatrooms.push(data[i].userid)
-        console.log(data[i])
+        console.log(data[i].userid)
         $('.ex1').append(
           '<button class="chatroombutton" id="' +
             data[i].userid +
             '" onClick="reply_click(' +
             data[i].userid +
-            ')"> User: ' +
-            data[i].userid +
+            ')">' +
+            data[i].username +
             '</button>'
         )
       }
@@ -197,7 +197,7 @@ $('#Login').click(event => {
 })
 
 //receive new chats and append them
-socket.on('newChattoUsers', (msg, time, senderid) => {
+socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid) => {
   console.log(
     senderid,
     sessionStorage.getItem('userid'),
@@ -216,21 +216,24 @@ socket.on('newChattoUsers', (msg, time, senderid) => {
     ) {
       console.log('admin is sender')
     } else {
-
       if (Notification.permission == 'granted') {
         showNotification(msg)
       }
     }
-
   }
 
-  $('.ex2').append(
-    '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-      msg +
-      '</p><span class="time-left">' +
-      time +
-      '</span></div>'
-  )
+  DisplayAllChatrooms()
+
+  //only append if in correct chatroom
+  if ((msgchatroomid = sessionStorage.getItem('chatroomid'))) {
+    $('.ex2').append(
+      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
+        msg +
+        '</p><span class="time-left">' +
+        time +
+        '</span></div>'
+    )
+  }
 
   //scroll to bottom
   $('.ex2').animate(

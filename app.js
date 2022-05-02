@@ -91,13 +91,14 @@ io.on('connection', socket => {
       }
     )
   })
-
   socket.on('grabUserIds', () => {
     connection.query(
-      'SELECT userid FROM userinfo WHERE admin = 0;',
+      'SELECT chathistory.userid, max(chathistory.id) AS "max_id", userinfo.admin, userinfo.username FROM chathistory INNER JOIN userinfo ON chathistory.userid = userinfo.userid WHERE userinfo.admin = 0 GROUP BY userid;',
       (err, ids) => {
         //print error
         if (err) console.log(err)
+
+        ids = ids.sort((a, b) => (a.max_id < b.max_id) ? 1 : -1)
 
         //send new chat to all connected users
         console.log(ids, 'hola')
@@ -180,7 +181,7 @@ io.on('connection', socket => {
         if (err) console.log(err)
 
         //send out new chat to connected users
-        io.emit('newChattoUsers', newChat, time, userid)
+        io.emit('newChattoUsers', newChat, time, userid, chatroomid)
       }
     )
   })
