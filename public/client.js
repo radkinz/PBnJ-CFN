@@ -32,6 +32,7 @@ function DisplayAllChatrooms () {
     //grab all user ids
     socket.emit('grabUserIds')
     socket.on('handleUserIds', data => {
+      console.log(data, "yahoo")
       $('.ex1').html(' ')
 
       //add homepage
@@ -218,7 +219,8 @@ $("#newAccount").click(function() {
     if ($("#inputCreateUsername").val() != "" && $("#inputCreatePassword").val() != "" && createUserAdminStatus != undefined) {
         //create account
             socket.emit("newAccountInSQL", $("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            console.log("over heeereeee")
+            console.log($("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
+            
     }
 })
 
