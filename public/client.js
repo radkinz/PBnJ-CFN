@@ -15,12 +15,13 @@ function showNotification (body, username) {
   }
 }
 
+let createUserAdminStatus;
 //store session info
 socket.on('sessionStorage', (res, callback) => {
-  //set session storage values
-  sessionStorage.setItem('userid', res.userid)
-  sessionStorage.setItem('admin', res.admin)
-  callback('done!')
+    //set session storage values
+    sessionStorage.setItem('userid', res.userid)
+    sessionStorage.setItem('admin', res.admin)
+    callback('done!')
 })
 
 //display all chatrooms
@@ -46,8 +47,8 @@ function DisplayAllChatrooms () {
         // chatrooms.push(data[i].userid)
         console.log(data[i].userid)
         $('.ex1').append(
-          '<button class="chatroombutton" id="' +
-            data[i].userid +
+            '<button class="chatroombutton" id="' +
+            0 +
             '" onClick="reply_click(' +
             data[i].userid +
             ')">' +
@@ -86,59 +87,59 @@ function DisplayAllChatrooms () {
 
 //grab all chats
 getAllChats()
-function getAllChats () {
-  socket.emit('allChats', sessionStorage.getItem('chatroom'))
+
+function getAllChats() {
+    socket.emit('allChats', sessionStorage.getItem('chatroom'))
 }
 
 socket.on('DisplayallChats', chats => {
-  //delete chats to start
-  $('.ex1').html(' ')
-  $('.ex2').html(' ')
+    //delete chats to start
+    $('.ex1').html(' ')
+    $('.ex2').html(' ')
 
-  //display chatroom
-  DisplayAllChatrooms()
+    //display chatroom
+    DisplayAllChatrooms()
 
-  //display chat array
-  for (let i = 0; i < chats.length; i++) {
-    $('.ex2').append(
-      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-        chats[i].chat +
-        '</p><span class="time-left">' +
-        chats[i].time +
-        '</span></div>'
+    //display chat array
+    for (let i = 0; i < chats.length; i++) {
+        $('.ex2').append(
+            '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
+            chats[i].chat +
+            '</p><span class="time-left">' +
+            chats[i].time +
+            '</span></div>'
+        )
+    }
+
+    //hide input
+    let status = sessionStorage.getItem('admin')
+    let chatroomID = sessionStorage.getItem('chatroom')
+
+    if (status !== '1' && chatroomID == '0') {
+        $('#messageinpoott').hide()
+    } else {
+        $('#messageinpoott').show()
+    }
+
+    $('.ex2').animate({
+            scrollTop: $('.ex2').prop('scrollHeight')
+        },
+        1200
     )
-  }
-
-  //hide input
-  let status = sessionStorage.getItem('admin')
-  let chatroomID = sessionStorage.getItem('chatroom')
-
-  if (status !== '1' && chatroomID == '0') {
-    $('#messageinpoott').hide()
-  } else {
-    $('#messageinpoott').show()
-  }
-
-  $('.ex2').animate(
-    {
-      scrollTop: $('.ex2').prop('scrollHeight')
-    },
-    1200
-  )
 })
 
 //check user login status
 socket.on('loginStatus', (status, adminStatus) => {
-  if (status) {
-    console.log(adminStatus, typeof adminStatus)
-    if (adminStatus == 1) {
-      window.location = '/ButtonMenu?status=1'
+    if (status) {
+        console.log(adminStatus, typeof adminStatus)
+        if (adminStatus == 1) {
+            window.location = '/ButtonMenu?status=1'
+        } else {
+            window.location = '/ButtonMenu?status=0'
+        }
     } else {
-      window.location = '/ButtonMenu?status=0'
+        alert('Incorrect username or password. Please try again.')
     }
-  } else {
-    alert('Incorrect username or password. Please try again.')
-  }
 })
 
 $('#back').click(function () {
@@ -152,9 +153,9 @@ $('#back').click(function () {
 })
 
 //grab chatroom id
-function reply_click (clicked_id) {
-  sessionStorage.setItem('chatroom', clicked_id)
-  getAllChats()
+function reply_click(clicked_id) {
+    sessionStorage.setItem('chatroom', clicked_id)
+    getAllChats()
 }
 
 //send new chat when user presses enter key
@@ -207,9 +208,26 @@ $('#messageinpoot').keypress(function (e) {
 
 //when login button click send to server
 $('#Login').click(event => {
-  //prevent default refresh page
-  event.preventDefault()
-  socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
+    //prevent default refresh page
+    event.preventDefault()
+    socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
+})
+
+
+$("#newAccount").click(function() {
+    if ($("#inputCreateUsername").val() != "" && $("#inputCreatePassword").val() != "" && createUserAdminStatus != undefined) {
+        //create account
+            socket.emit("newAccountInSQL", $("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
+            console.log("over heeereeee")
+    }
+})
+
+$("#Admin-Y").click(function() {
+    createUserAdminStatus = 1;
+})
+
+$("#Admin-N").click(function() {
+    createUserAdminStatus = 0;
 })
 
 //receive new chats and append them

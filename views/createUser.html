@@ -4,17 +4,19 @@
   <meta charset="utf-8">
   <title>Create User</title>
   <link href="AccountCreation.css" rel="stylesheet" type="text/css" />
-
-  <script src="public/client.js" async defer></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <!-- import socket.io -->
+     <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js" async defer></script> 
 </head>
 <body>
   <h1>Create Account</h1>
   <div id="large-container">
     <form id="Username"> 
 
-      <input type="text" placeholder= "Username"  name="message"><br>
+      <input id="inputCreateUsername" type="text" placeholder= "Username"  name="message"><br>
 
-      <input type="password" placeholder= "Password"  name="message"><br>
+      <input id="inputCreatePassword" type="password" placeholder= "Password"  name="message"><br>
     </form>
 
     <div id="explaination">
@@ -26,7 +28,7 @@
     </div>
     <div id="Login">
 
-      <button id= "Login" type="button">Create Account!</button>
+      <button id= "newAccount" type="button">Create Account!</button>
     </div>
   </div>
 </body>
