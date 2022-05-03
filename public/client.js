@@ -42,6 +42,7 @@ function DisplayAllChatrooms () {
       )
 
       for (let i = 0; i < data.length; i++) {
+
         // chatrooms.push(data[i].userid)
         console.log(data[i].userid)
         $('.ex1').append(
@@ -54,6 +55,9 @@ function DisplayAllChatrooms () {
             '</button>'
         )
       }
+
+      //make white div for whatever one u are on
+     $(`#${sessionStorage.getItem('chatroom')}`).css("background-color", "white");
     })
   } else {
     //add homepage
@@ -72,7 +76,10 @@ function DisplayAllChatrooms () {
         sessionStorage.getItem('userid') +
         ')"> Your private messages with PBnJ </button>'
     )
+
+    $(`#${sessionStorage.getItem('chatroom')}`).css("background-color", "white");
   }
+
 }
 
 //grab all chats
