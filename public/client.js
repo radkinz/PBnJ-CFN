@@ -6,8 +6,9 @@ sessionStorage.setItem('chatroomList', [0])
 //notification stuff
 let permission = Notification.permission
 
-function showNotification (body) {
-  var notification = new Notification('You received a new chat!', { body })
+function showNotification (body, username) {
+  console.log(username)
+  var notification = new Notification(`You received a new chat from ${username}`, { body })
   notification.onclick = () => {
     notification.close()
     window.parent.focus()
@@ -212,7 +213,7 @@ $('#Login').click(event => {
 })
 
 //receive new chats and append them
-socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid) => {
+socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
   console.log(
     senderid,
     sessionStorage.getItem('userid'),
@@ -232,7 +233,7 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid) => {
       console.log('admin is sender')
     } else {
       if (Notification.permission == 'granted') {
-        showNotification(msg)
+        showNotification(msg, username)
       }
     }
   }

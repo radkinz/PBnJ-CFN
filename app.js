@@ -172,16 +172,22 @@ io.on('connection', socket => {
   })
 
   //listen for new messages
-  socket.on('newChat', (newChat, userid, time, chatroomid) => {
+  socket.on('newChat', (newChat, userid, time, chatroomid, username) => {
     //add chat to database
     connection.query(
       'INSERT INTO chathistory(chat, userid, time, chatroomid) VALUES (?, ?, ?, ?);',
       [newChat, userid, time, chatroomid],
       err => {
         if (err) console.log(err)
+        connection.query('SELECT username from userinfo WHERE userid = ?', [userid], (err, data) => {
+          if (err) console.log(err)
+        //send out new chat to connected users
+        console.log(data)
+          io.emit('newChattoUsers', newChat, time, userid, chatroomid, data[0].username)
+        });
 
         //send out new chat to connected users
-        io.emit('newChattoUsers', newChat, time, userid, chatroomid)
+        //io.emit('newChattoUsers', newChat, time, userid, chatroomid, username)
       }
     )
   })
