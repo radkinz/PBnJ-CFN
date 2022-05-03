@@ -42,7 +42,6 @@ function DisplayAllChatrooms () {
       )
 
       for (let i = 0; i < data.length; i++) {
-
         // chatrooms.push(data[i].userid)
         console.log(data[i].userid)
         $('.ex1').append(
@@ -57,7 +56,10 @@ function DisplayAllChatrooms () {
       }
 
       //make white div for whatever one u are on
-     $(`#${sessionStorage.getItem('chatroom')}`).css("background-color", "white");
+      $(`#${sessionStorage.getItem('chatroom')}`).css(
+        'background-color',
+        'white'
+      )
     })
   } else {
     //add homepage
@@ -77,9 +79,8 @@ function DisplayAllChatrooms () {
         ')"> Your private messages with PBnJ </button>'
     )
 
-    $(`#${sessionStorage.getItem('chatroom')}`).css("background-color", "white");
+    $(`#${sessionStorage.getItem('chatroom')}`).css('background-color', 'white')
   }
-
 }
 
 //grab all chats
@@ -154,44 +155,51 @@ function reply_click (clicked_id) {
   sessionStorage.setItem('chatroom', clicked_id)
   getAllChats()
 }
-//send new chats when button is clicked
-$('#sned_butt').click(event => {
-  //prevent default refresh page
-  event.preventDefault()
 
-  //send chat from input to server
-  let userid = sessionStorage.getItem('userid')
+//send new chat when user presses enter key
+$('#messageinpoot').keypress(function (e) {
+  var key = e.which
+  if (key == 13) {
+    // the enter key code
+    e.preventDefault()
 
-  let date_ob = new Date()
+    //send chat from input to server
+    let userid = sessionStorage.getItem('userid')
 
-  // current date
-  // adjust 0 before single digit date
-  let date = ('0' + date_ob.getDate()).slice(-2)
+    let date_ob = new Date()
 
-  // current month
-  let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
+    // current date
+    // adjust 0 before single digit date
+    let date = ('0' + date_ob.getDate()).slice(-2)
 
-  // current year
-  let year = date_ob.getFullYear()
+    // current month
+    let month = ('0' + (date_ob.getMonth() + 1)).slice(-2)
 
-  // current hours
-  let hours = date_ob.getHours()
+    // current year
+    let year = date_ob.getFullYear()
 
-  // current minutes
-  let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
+    // current hours
+    let hours = date_ob.getHours()
 
-  let finalTime = hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
+    // current minutes
+    let minutes = ('0' + (date_ob.getMinutes() + 1)).slice(-2)
 
-  let chatroomid = sessionStorage.getItem('chatroom')
+    let finalTime =
+      hours + ':' + minutes + ' ' + month + '-' + date + '-' + year
 
-  socket.emit(
-    'newChat',
-    $('#messageinpoot').val(),
-    userid,
-    finalTime,
-    chatroomid
-  )
-  $('#messageinpoot').val('')
+    let chatroomid = sessionStorage.getItem('chatroom')
+
+    console.log($('#messageinpoot').val(), userid, finalTime, chatroomid)
+
+    socket.emit(
+      'newChat',
+      $('#messageinpoot').val(),
+      userid,
+      finalTime,
+      chatroomid
+    )
+    $('#messageinpoot').val('')
+  }
 })
 
 //creating a new account (username, password, admin status)
@@ -232,7 +240,13 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid) => {
   DisplayAllChatrooms()
 
   //only append if in correct chatroom
-  if ((msgchatroomid = sessionStorage.getItem('chatroomid'))) {
+  console.log(
+    sessionStorage.getItem('chatroom'),
+    msgchatroomid,
+    typeof msgchatroomid,
+    typeof sessionStorage.getItem('chatroom')
+  )
+  if (msgchatroomid == sessionStorage.getItem('chatroom')) {
     $('.ex2').append(
       '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
         msg +
