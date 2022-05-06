@@ -201,6 +201,7 @@ io.on('connection', socket => {
         console.log(result)
         if (result.length == 0) {
           // res.render('index.html', {})
+          console.log('oof')
           socket.emit('loginStatus', false)
         } else {
           hashedPassword = result[0]['hashword']

@@ -49,7 +49,7 @@ function DisplayAllChatrooms () {
         console.log(data[i].userid)
         $('.ex1').append(
             '<button class="chatroombutton" id="' +
-            0 +
+            data[i].userid +
             '" onClick="reply_click(' +
             data[i].userid +
             ')">' +
@@ -59,6 +59,7 @@ function DisplayAllChatrooms () {
       }
 
       //make white div for whatever one u are on
+      console.log(sessionStorage.getItem('chatroom'), $(`#${sessionStorage.getItem('chatroom')}`))
       $(`#${sessionStorage.getItem('chatroom')}`).css(
         'background-color',
         'white'
