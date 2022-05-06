@@ -32,7 +32,6 @@ function DisplayAllChatrooms () {
     //grab all user ids
     socket.emit('grabUserIds')
     socket.on('handleUserIds', data => {
-      console.log(data, "yahoo")
       $('.ex1').html(' ')
 
       //add homepage
@@ -139,6 +138,7 @@ socket.on('loginStatus', (status, adminStatus) => {
             window.location = '/ButtonMenu?status=0'
         }
     } else {
+      console.log("is this occurring in account creationnnn")
         alert('Incorrect username or password. Please try again.')
     }
 })
@@ -215,21 +215,26 @@ $('#Login').click(event => {
 })
 
 
+//create new account
 $("#newAccount").click(function() {
     if ($("#inputCreateUsername").val() != "" && $("#inputCreatePassword").val() != "" && createUserAdminStatus != undefined) {
         //create account
             socket.emit("newAccountInSQL", $("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            console.log($("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            
+            console.log("over heeereeee")
     }
 })
 
 $("#Admin-Y").click(function() {
     createUserAdminStatus = 1;
+    $("Admin-Y").css("background","green")
+    $("Admin-N").css('background','white')
+
 })
 
 $("#Admin-N").click(function() {
     createUserAdminStatus = 0;
+    $("Admin-N").css("background","green")
+    $("Admin-Y").css('background','white')
 })
 
 //receive new chats and append them
