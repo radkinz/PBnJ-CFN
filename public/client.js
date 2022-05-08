@@ -105,15 +105,29 @@ function getAllChats () {
 socket.on('DisplayChats', chats => {
   $('.ex2').html(' ')
 
+  let ids = JSON.parse(sessionStorage.getItem('allUserIds'))
+
   //display chat array
   for (let i = 0; i < chats.length; i++) {
-    $('.ex2').append(
-      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-        chats[i].chat +
-        '</p><span class="time-left">' +
-        chats[i].time +
-        '</span></div>'
-    )
+    if (
+      ids.some(id => id.userid === chats[i].userid) 
+    ) {
+      $('.ex2').append(
+        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100%;" /><p>' +
+          chats[i].chat +
+          '</p><span class="time-left">' +
+          chats[i].time +
+          '</span></div>'
+      )
+    } else {
+      $('.ex2').append(
+        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100%;" /><p>' +
+          chats[i].chat +
+          '</p><span class="time-left">' +
+          chats[i].time +
+          '</span></div>'
+      )
+    }
   }
 
   $('.ex2').animate(
@@ -132,15 +146,29 @@ socket.on('DisplayallChats', chats => {
   //display chatroom
   DisplayAllChatrooms()
 
+  let ids = JSON.parse(sessionStorage.getItem('allUserIds'))
+
   //display chat array
   for (let i = 0; i < chats.length; i++) {
-    $('.ex2').append(
-      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-        chats[i].chat +
-        '</p><span class="time-left">' +
-        chats[i].time +
-        '</span></div>'
-    )
+    if (
+      ids.some(id => id.userid === chats[i].userid) 
+    ) {
+      $('.ex2').append(
+        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100%;" /><p>' +
+          chats[i].chat +
+          '</p><span class="time-left">' +
+          chats[i].time +
+          '</span></div>'
+      )
+    } else {
+      $('.ex2').append(
+        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100%;" /><p>' +
+          chats[i].chat +
+          '</p><span class="time-left">' +
+          chats[i].time +
+          '</span></div>'
+      )
+    }
   }
 
   //hide input
@@ -149,8 +177,8 @@ socket.on('DisplayallChats', chats => {
 
   //hide search inputs
   if (status !== '1') {
-    console.log($(".chatroomSearchContainer"))
-    $(".chatroomSearchContainer").hide()
+    console.log($('.chatroomSearchContainer'))
+    $('.chatroomSearchContainer').hide()
   }
 
   if (status !== '1' && chatroomID == '0') {

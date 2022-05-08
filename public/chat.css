@@ -166,7 +166,7 @@ div.ex2 {
 }
 .container {
   border: 2px solid #dedede;
-  background-color: rgb(53,121,244);
+  background-color: rgb(202, 161, 255);
   border-radius: 50px;
   padding: 10px;
   margin: 10px 0;
@@ -204,11 +204,11 @@ div.ex2 {
 /* Style time text */
 .time-right {
   float: right;
-  color: #aaa;
+  color: rgb(0, 0, 0);
 }
 
 /* Style time text */
 .time-left {
   float: left;
-  color: #999;
+  color: rgb(0, 0, 0);
 }
