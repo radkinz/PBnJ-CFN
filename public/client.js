@@ -35,10 +35,6 @@ function DisplayAllChatrooms () {
     //grab all user ids
     socket.emit('grabUserIds')
     socket.on('handleUserIds', data => {
-<<<<<<< HEAD
-      console.log(data, 'yahoo')
-=======
->>>>>>> ae2bd4ecb85b57b3b6e8b787cd280d126135760d
       $('.ex1').html(' ')
 
       //save data
@@ -151,6 +147,12 @@ socket.on('DisplayallChats', chats => {
   let status = sessionStorage.getItem('admin')
   let chatroomID = sessionStorage.getItem('chatroom')
 
+  //hide search inputs
+  if (status !== '1') {
+    console.log($(".chatroomSearchContainer"))
+    $(".chatroomSearchContainer").hide()
+  }
+
   if (status !== '1' && chatroomID == '0') {
     $('#messageinpoott').hide()
   } else {
@@ -172,12 +174,7 @@ socket.on('loginStatus', (status, adminStatus) => {
     if (adminStatus == 1) {
       window.location = '/ButtonMenu?status=1'
     } else {
-<<<<<<< HEAD
       window.location = '/ButtonMenu?status=0'
-=======
-      console.log("is this occurring in account creationnnn")
-        alert('Incorrect username or password. Please try again.')
->>>>>>> ae2bd4ecb85b57b3b6e8b787cd280d126135760d
     }
   } else {
     alert('Incorrect username or password. Please try again.')
@@ -263,8 +260,8 @@ $('#chatroomSearch').keypress(function (e) {
     }
 
     $('.ex1').html(' ')
-    $('#chatroomSearch').val(" ")
-    $('#chatroomSearch').blur();
+    $('#chatroomSearch').val(' ')
+    $('#chatroomSearch').blur()
 
     $('.ex1').append(
       '<button class="chatroombutton" id="' +
@@ -285,9 +282,9 @@ $('#chatroomSearch').keypress(function (e) {
   }
 })
 
-$("#cancelSearch").click(function(){
+$('#cancelSearch').click(function () {
   sessionStorage.setItem('chatroom', 0)
-  $('#chatroomSearch').val(" ")
+  $('#chatroomSearch').val(' ')
   socket.emit('allChats', sessionStorage.getItem('chatroom'), 'DisplayallChats')
 })
 
@@ -300,7 +297,7 @@ $('#Login').click(event => {
   socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
 })
 
-<<<<<<< HEAD
+//create new account
 $('#newAccount').click(function () {
   if (
     $('#inputCreateUsername').val() != '' &&
@@ -314,43 +311,20 @@ $('#newAccount').click(function () {
       $('#inputCreatePassword').val(),
       createUserAdminStatus
     )
-    console.log(
-      $('#inputCreateUsername').val(),
-      $('#inputCreatePassword').val(),
-      createUserAdminStatus
-    )
+    console.log('over heeereeee')
   }
 })
 
 $('#Admin-Y').click(function () {
   createUserAdminStatus = 1
+  $('Admin-Y').css('background', 'green')
+  $('Admin-N').css('background', 'white')
 })
 
 $('#Admin-N').click(function () {
   createUserAdminStatus = 0
-=======
-
-//create new account
-$("#newAccount").click(function() {
-    if ($("#inputCreateUsername").val() != "" && $("#inputCreatePassword").val() != "" && createUserAdminStatus != undefined) {
-        //create account
-            socket.emit("newAccountInSQL", $("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            console.log("over heeereeee")
-    }
-})
-
-$("#Admin-Y").click(function() {
-    createUserAdminStatus = 1;
-    $("Admin-Y").css("background","green")
-    $("Admin-N").css('background','white')
-
-})
-
-$("#Admin-N").click(function() {
-    createUserAdminStatus = 0;
-    $("Admin-N").css("background","green")
-    $("Admin-Y").css('background','white')
->>>>>>> ae2bd4ecb85b57b3b6e8b787cd280d126135760d
+  $('Admin-N').css('background', 'green')
+  $('Admin-Y').css('background', 'white')
 })
 
 //receive new chats and append them
