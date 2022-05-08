@@ -76,7 +76,7 @@ app.get('/AccountDelete', function (req, res) {
 
 //connect new user
 io.on('connection', socket => {
-  socket.on('allChats', chatroomId => {
+  socket.on('allChats', (chatroomId, nxtCmd) => {
     console.log(chatroomId)
     //send new user all chat messages from database
     connection.query(
@@ -87,7 +87,7 @@ io.on('connection', socket => {
         if (err) console.log(err)
 
         //send new chat to all connected users
-        socket.emit('DisplayallChats', res)
+        socket.emit(nxtCmd, res)
       }
     )
   })

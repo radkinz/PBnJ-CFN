@@ -8,20 +8,23 @@ let permission = Notification.permission
 
 function showNotification (body, username) {
   console.log(username)
-  var notification = new Notification(`You received a new chat from ${username}`, { body })
+  var notification = new Notification(
+    `You received a new chat from ${username}`,
+    { body }
+  )
   notification.onclick = () => {
     notification.close()
     window.parent.focus()
   }
 }
 
-let createUserAdminStatus;
+let createUserAdminStatus
 //store session info
 socket.on('sessionStorage', (res, callback) => {
-    //set session storage values
-    sessionStorage.setItem('userid', res.userid)
-    sessionStorage.setItem('admin', res.admin)
-    callback('done!')
+  //set session storage values
+  sessionStorage.setItem('userid', res.userid)
+  sessionStorage.setItem('admin', res.admin)
+  callback('done!')
 })
 
 //display all chatrooms
@@ -32,8 +35,11 @@ function DisplayAllChatrooms () {
     //grab all user ids
     socket.emit('grabUserIds')
     socket.on('handleUserIds', data => {
-      console.log(data, "yahoo")
+      console.log(data, 'yahoo')
       $('.ex1').html(' ')
+
+      //save data
+      sessionStorage.setItem('allUserIds', JSON.stringify(data))
 
       //add homepage
       $('.ex1').append(
@@ -48,7 +54,7 @@ function DisplayAllChatrooms () {
         // chatrooms.push(data[i].userid)
         console.log(data[i].userid)
         $('.ex1').append(
-            '<button class="chatroombutton" id="' +
+          '<button class="chatroombutton" id="' +
             data[i].userid +
             '" onClick="reply_click(' +
             data[i].userid +
@@ -59,7 +65,10 @@ function DisplayAllChatrooms () {
       }
 
       //make white div for whatever one u are on
-      console.log(sessionStorage.getItem('chatroom'), $(`#${sessionStorage.getItem('chatroom')}`))
+      console.log(
+        sessionStorage.getItem('chatroom'),
+        $(`#${sessionStorage.getItem('chatroom')}`)
+      )
       $(`#${sessionStorage.getItem('chatroom')}`).css(
         'background-color',
         'white'
@@ -90,58 +99,81 @@ function DisplayAllChatrooms () {
 //grab all chats
 getAllChats()
 
-function getAllChats() {
-    socket.emit('allChats', sessionStorage.getItem('chatroom'))
+function getAllChats () {
+  socket.emit('allChats', sessionStorage.getItem('chatroom'), 'DisplayallChats')
 }
 
-socket.on('DisplayallChats', chats => {
-    //delete chats to start
-    $('.ex1').html(' ')
-    $('.ex2').html(' ')
+socket.on('DisplayChats', chats => {
+  $('.ex2').html(' ')
 
-    //display chatroom
-    DisplayAllChatrooms()
-
-    //display chat array
-    for (let i = 0; i < chats.length; i++) {
-        $('.ex2').append(
-            '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-            chats[i].chat +
-            '</p><span class="time-left">' +
-            chats[i].time +
-            '</span></div>'
-        )
-    }
-
-    //hide input
-    let status = sessionStorage.getItem('admin')
-    let chatroomID = sessionStorage.getItem('chatroom')
-
-    if (status !== '1' && chatroomID == '0') {
-        $('#messageinpoott').hide()
-    } else {
-        $('#messageinpoott').show()
-    }
-
-    $('.ex2').animate({
-            scrollTop: $('.ex2').prop('scrollHeight')
-        },
-        1200
+  //display chat array
+  for (let i = 0; i < chats.length; i++) {
+    $('.ex2').append(
+      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
+        chats[i].chat +
+        '</p><span class="time-left">' +
+        chats[i].time +
+        '</span></div>'
     )
+  }
+
+  $('.ex2').animate(
+    {
+      scrollTop: $('.ex2').prop('scrollHeight')
+    },
+    1200
+  )
+})
+
+socket.on('DisplayallChats', chats => {
+  //delete chats to start
+  $('.ex1').html(' ')
+  $('.ex2').html(' ')
+
+  //display chatroom
+  DisplayAllChatrooms()
+
+  //display chat array
+  for (let i = 0; i < chats.length; i++) {
+    $('.ex2').append(
+      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
+        chats[i].chat +
+        '</p><span class="time-left">' +
+        chats[i].time +
+        '</span></div>'
+    )
+  }
+
+  //hide input
+  let status = sessionStorage.getItem('admin')
+  let chatroomID = sessionStorage.getItem('chatroom')
+
+  if (status !== '1' && chatroomID == '0') {
+    $('#messageinpoott').hide()
+  } else {
+    $('#messageinpoott').show()
+  }
+
+  $('.ex2').animate(
+    {
+      scrollTop: $('.ex2').prop('scrollHeight')
+    },
+    1200
+  )
 })
 
 //check user login status
 socket.on('loginStatus', (status, adminStatus) => {
-    if (status) {
-        console.log(adminStatus, typeof adminStatus)
-        if (adminStatus == 1) {
-            window.location = '/ButtonMenu?status=1'
-        } else {
-            window.location = '/ButtonMenu?status=0'
-        }
+  if (status) {
+    console.log(adminStatus, typeof adminStatus)
+    if (adminStatus == 1) {
+      window.location = '/ButtonMenu?status=1'
     } else {
-        alert('Incorrect username or password. Please try again.')
+      window.location = '/ButtonMenu?status=0'
     }
+  } else {
+    alert('Incorrect username or password. Please try again.')
+  }
 })
 
 $('#back').click(function () {
@@ -155,9 +187,9 @@ $('#back').click(function () {
 })
 
 //grab chatroom id
-function reply_click(clicked_id) {
-    sessionStorage.setItem('chatroom', clicked_id)
-    getAllChats()
+function reply_click (clicked_id) {
+  sessionStorage.setItem('chatroom', clicked_id)
+  getAllChats()
 }
 
 //send new chat when user presses enter key
@@ -206,31 +238,87 @@ $('#messageinpoot').keypress(function (e) {
   }
 })
 
+//send new chat when user presses enter key
+$('#chatroomSearch').keypress(function (e) {
+  var key = e.which
+  if (key == 13) {
+    // the enter key code
+    e.preventDefault()
+
+    let ids = JSON.parse(sessionStorage.getItem('allUserIds'))
+    let searchquery = $('#chatroomSearch').val()
+    let idFound = ids.find(id => id.username === searchquery)
+
+    if (idFound == undefined) {
+      alert('Username not found')
+      return
+    }
+
+    $('.ex1').html(' ')
+    $('#chatroomSearch').val(" ")
+    $('#chatroomSearch').blur();
+
+    $('.ex1').append(
+      '<button class="chatroombutton" id="' +
+        idFound.userid +
+        '" onClick="reply_click(' +
+        idFound.userid +
+        ')">' +
+        idFound.username +
+        '</button>'
+    )
+
+    //make white div for whatever one u are on
+    sessionStorage.setItem('chatroom', idFound.userid)
+    $(`#${sessionStorage.getItem('chatroom')}`).css('background-color', 'white')
+
+    //show chats
+    socket.emit('allChats', sessionStorage.getItem('chatroom'), 'DisplayChats')
+  }
+})
+
+$("#cancelSearch").click(function(){
+  sessionStorage.setItem('chatroom', 0)
+  $('#chatroomSearch').val(" ")
+  socket.emit('allChats', sessionStorage.getItem('chatroom'), 'DisplayallChats')
+})
+
 //creating a new account (username, password, admin status)
 
 //when login button click send to server
 $('#Login').click(event => {
-    //prevent default refresh page
-    event.preventDefault()
-    socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
+  //prevent default refresh page
+  event.preventDefault()
+  socket.emit('login', $('#usernameInput').val(), $('#passwordInput').val())
 })
 
-
-$("#newAccount").click(function() {
-    if ($("#inputCreateUsername").val() != "" && $("#inputCreatePassword").val() != "" && createUserAdminStatus != undefined) {
-        //create account
-            socket.emit("newAccountInSQL", $("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            console.log($("#inputCreateUsername").val(), $("#inputCreatePassword").val(), createUserAdminStatus);
-            
-    }
+$('#newAccount').click(function () {
+  if (
+    $('#inputCreateUsername').val() != '' &&
+    $('#inputCreatePassword').val() != '' &&
+    createUserAdminStatus != undefined
+  ) {
+    //create account
+    socket.emit(
+      'newAccountInSQL',
+      $('#inputCreateUsername').val(),
+      $('#inputCreatePassword').val(),
+      createUserAdminStatus
+    )
+    console.log(
+      $('#inputCreateUsername').val(),
+      $('#inputCreatePassword').val(),
+      createUserAdminStatus
+    )
+  }
 })
 
-$("#Admin-Y").click(function() {
-    createUserAdminStatus = 1;
+$('#Admin-Y').click(function () {
+  createUserAdminStatus = 1
 })
 
-$("#Admin-N").click(function() {
-    createUserAdminStatus = 0;
+$('#Admin-N').click(function () {
+  createUserAdminStatus = 0
 })
 
 //receive new chats and append them

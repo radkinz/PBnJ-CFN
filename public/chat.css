@@ -87,14 +87,40 @@ bottom:   0%;
 }
 */
 
-div.ex1 {
+#labelchatroomSearch {
+  float: left;
+  padding-top: 8px;
+  padding-left:10px; 
+}
+
+#chatroomSearch {
+  width: 100%;
+}
+
+#cancelSearch {
+  float: right;
+  margin-top: 5px;
+  margin-right:10px; 
+}
+
+span {
+  display: block;
+  overflow: hidden;
+  padding-left:5px;
+  padding-right:10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+div.ex1container {
   background-color: rgb(235, 179, 118);
   border-radius: 1px;
   position: absolute;
   left: 7px;
   width: 32%;
   height: 97%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 div.ex2 {
