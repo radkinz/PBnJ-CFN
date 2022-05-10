@@ -1,97 +1,110 @@
 body {
-  background-color: rgb(235, 179, 118);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+background-color: rgb(255, 255, 255);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
-#large-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#large-container{
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-h1 {
-  color: rgb(98, 79, 161);
+h1  {
+  color: rgb(98,79,161);
   font-size: 69px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   text-align: top;
 }
-#Admin-Y {
-  display: inline-block;
-  justify-content: center;
+#Admin-Y{
+ display: inline-block;
+justify-content: center;
 
-  width: 100px;
+
+width: 100px;
   background-color: White;
   border-color: black;
   font-size: 20px;
-  font-family: Generic, serif, Times New Roman;
+ font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#Admin-Yes {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+#Admin-Yes{
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
 }
 
-#Admin-N {
-  display: inline-block;
-  justify-content: center;
+#Admin-N{
+ display: inline-block;
+justify-content: center;
 
-  width: 100px;
+
+width: 100px;
   background-color: White;
   border-color: black;
   font-size: 20px;
-  font-family: Generic, serif, Times New Roman;
+font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#explaination {
-  white-space: nowrap;
-  background-color: rgb(235, 179, 118);
-  padding: 30px;
-  font-size: 20px;
+#explaination{
+white-space: nowrap;
+background-color: rgb(255, 255, 255);
+padding: 30px;
+font-size: 20px;
 }
-#Username {
-  width: 100%;
+}
+#Username { 
+
+width: 100%;
+  
 }
 #Username input {
   width: 100%;
   text-align: center;
-
+  
   font-size: 20px;
   border-radius: 37px;
   border-color: black;
+
 }
 
-button:active {
-  background: olive;
+
+button:active{
+    background:olive;
 }
 
-#Admin-Y:focus {
-  background: #34f000;
+#Admin-Y:focus{
+    background:#34f000;
 }
 
-#Admin-N:focus {
-  background: #34f000;
+#Admin-N:focus{
+    background:#34f000;
 }
 
-#newAccount {
-  width: 200px;
+
+
+#Login{
+width: 200px;
   background-color: #09fbeb;
   border-color: black;
   font-size: 40px;
-  font-family: Generic, serif, Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
 }
-#Loginn:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+#Login:hover {
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 #Admin-Y:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 #Admin-N:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

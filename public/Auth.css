@@ -1,52 +1,54 @@
 body {
-  background-color: rgb(235, 179, 118);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+background-color: rgb(255, 255, 255);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 
-#large-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
-h1 {
+#large-container{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+  
+}
+h1  {
   text-align: center;
-  color: rgb(98, 79, 161);
+  color: rgb(98,79,161);
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 69px;
-  width: 100%;
+width: 100%;
 }
 
-#Username {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+#Username { 
+width: 100%;
+  
 }
-
-#usernameInput, #passwordInput {
+#Username input {
   width: 100%;
   text-align: center;
   top: 50%;
   font-size: 20px;
   border-radius: 37px;
   border-color: black;
+
 }
 
-#Login {
-  text-align: center;
-  width: 200px;
+
+
+
+#Login{
+text-align: center;
+width: 200px;
   top: 60%;
   background-color: #09fbeb;
   border-color: black;
   font-size: 40px;
-  font-family: Generic, serif, Times New Roman;
+font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 #Login:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

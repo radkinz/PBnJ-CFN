@@ -1,60 +1,74 @@
 h1 {
   text-align: center;
-  color: rgb(98, 79, 161);
+  color: rgb(98,79,161);
   font-size: 69px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
   width: 100%;
 }
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+
+         #body { 
+          background-color: rgb(255,255,255);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+              
+              }
+.container{
+display: flex; 
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
 }
 
-#div2 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+#div2{
+display: flex; 
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+  
 }
-
-#div3 {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+#div3{
+display: flex; 
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+  
 }
-
-#chat {
+#chat{
   background-color: white;
   border-color: black;
   border-radius: 40px;
   width: 500px;
+
   font-size: 50px;
-  font-family: Generic, serif, Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-#recipies {
+#recipies{  
   text-decoration: none;
   background-color: white;
   border-color: black;
   border-radius: 40px;
   width: 500px;
+
   font-size: 50px;
-  font-family: Generic, Serif, Times New Roman;
-  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+margin-top: 5px;
   text-align: center;
   color: black;
 }
+
 
 #FindFoodbank {
   background-color: white;
   border-color: black;
   border-radius: 50px;
   width: 500px;
+
   font-size: 50px;
-  font-family: Generic, serif, Times New Roman;
-  margin-top: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 #linesep {
   border-color: black;
@@ -67,38 +81,30 @@ h1 {
   margin-bottom:-25px;
   width: 40px;
  
-}
+}  
 #AccountManager {
  background-color: white;
   border-color: black;
   border-radius: 50px;
   width: 500px;
   font-size: 50px;
-  font-family: Generic, serif, Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
   margin-top: 50px;
 }
 #AccountManager:hover {
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
+
 #user:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-#chat:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
-#recipies:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
-}
+
 #admin:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #FindFoodbank:hover {
-  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
-    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
 }

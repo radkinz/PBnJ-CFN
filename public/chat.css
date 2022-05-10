@@ -2,7 +2,6 @@
 body {
   margin-left: 70px;
   font-size: 25px;
-  font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(110,85,158)
 }
@@ -10,14 +9,14 @@ body2 {
    margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
-  font-family: Arial,sans-serif, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: black;
 }
 body3 {
    margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
-  font-family: Arial,sans-serif, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   color: black;
 }
 #sned_butt{
@@ -44,11 +43,11 @@ right: 50px;
 
 #back {
   position: relative;
- margin-left: -50px;
-  top: -65px;
+  margin-left: -222px;
+  top: -35px;
 }
 
-#messageinpoott, #messageinpoot{
+#messageinpoot{
   display: flex; 
 flex-direction: row;
 justify-content: space-around;
@@ -87,40 +86,14 @@ bottom:   0%;
 }
 */
 
-#labelchatroomSearch {
-  float: left;
-  padding-top: 8px;
-  padding-left:10px; 
-}
-
-#chatroomSearch {
-  width: 100%;
-}
-
-#cancelSearch {
-  float: right;
-  margin-top: 5px;
-  margin-right:10px; 
-}
-
-span {
-  display: block;
-  overflow: hidden;
-  padding-left:5px;
-  padding-right:10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-div.ex1container {
-  background-color: rgb(235, 179, 118);
+div.ex1 {
+  background-color: rgb(255, 255, 255);
   border-radius: 1px;
   position: absolute;
   left: 7px;
   width: 32%;
   height: 97%;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: scroll;
 }
 
 div.ex2 {
@@ -134,39 +107,39 @@ div.ex2 {
   overflow: scroll;
 }
 
-.chatroombutton{
+#chast1{
   border-color: black;
-  background-color: rgb(235, 179, 118);
+  background-color: rgb(255, 255, 255);
   border-radius: 6px;
   position: relative; 
   height: 55px;
   width: 100%; 
 }
 
-.chatroombutton:hover {
+#chast1:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-.chatroombutton{
+#chast2{
   border-color: black;
-  background-color: rgb(235, 179, 118);
+  background-color: rgb(255, 255, 255);
   border-radius: 6px;
   position: relative; 
   height: 55px;
   width: 100%; 
 }
 
-.chatroombutton:hover {
+#chast2:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 #back {
-  left: 0px;
+  left: 10px;
 
 }
 .container {
   border: 2px solid #dedede;
-  background-color: rgb(202, 161, 255);
+  background-color: rgb(53,121,244);
   border-radius: 50px;
   padding: 10px;
   margin: 10px 0;
@@ -204,11 +177,11 @@ div.ex2 {
 /* Style time text */
 .time-right {
   float: right;
-  color: rgb(0, 0, 0);
+  color: #aaa;
 }
 
 /* Style time text */
 .time-left {
   float: left;
-  color: rgb(0, 0, 0);
+  color: #999;
 }

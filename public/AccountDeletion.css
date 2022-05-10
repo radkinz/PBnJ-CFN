@@ -1,5 +1,5 @@
 body {
-background-color: rgb(235, 179, 118);
+background-color: rgb(255, 255, 255);
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -15,11 +15,22 @@ align-items: center;
 h1  {
   color: rgb(98,79,161);
   font-size: 69px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
   postition: absolute;
   text-align: center;
   text-align: top;
 }
-
+#Admin-Yes{
+text-align: space-around;
+width: 100px;
+  
+  background-color: #34f000;
+  border-color: black;
+  font-size: 20px;
+font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
 }
 #Username { 
 width: 100%;
@@ -46,15 +57,15 @@ width: 100%;
 
 
 
-#delete-account{
+#Login{
   position: relative; 
 width: 200px;
   background-color: rgb(0, 255, 255);
   border-color: black;
   font-size: 40px;
-  font-family: Generic, serif, 	Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
 }
-#delete-account:hover {
+#Login:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 #Admin-Yes:hover {
