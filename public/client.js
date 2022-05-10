@@ -3,6 +3,13 @@ console.log('hello')
 sessionStorage.setItem('chatroom', 0)
 sessionStorage.setItem('chatroomList', [0])
 
+//grab all user ids for storage purposes
+socket.emit('grabUserIds')
+socket.on('handleUserIds', data => {
+  //save data
+  sessionStorage.setItem('allUserIds', JSON.stringify(data))
+})
+
 //notification stuff
 let permission = Notification.permission
 
@@ -32,13 +39,10 @@ function DisplayAllChatrooms () {
   $('.ex1').html(' ')
 
   if (sessionStorage.getItem('admin') == '1') {
-    //grab all user ids
-    socket.emit('grabUserIds')
-    socket.on('handleUserIds', data => {
+    //clear chats
       $('.ex1').html(' ')
-
-      //save data
-      sessionStorage.setItem('allUserIds', JSON.stringify(data))
+      let data = JSON.parse(sessionStorage.getItem('allUserIds'))
+      console.log(data)
 
       //add homepage
       $('.ex1').append(
@@ -72,7 +76,7 @@ function DisplayAllChatrooms () {
         'background-color',
         'white'
       )
-    })
+    
   } else {
     //add homepage
     $('.ex1').append(

@@ -93,6 +93,7 @@ io.on('connection', socket => {
   })
 
   socket.on('grabUserIds', () => {
+    console.log('help')
     connection.query(
       'SELECT chathistory.userid, max(chathistory.id) AS "max_id", userinfo.admin, userinfo.username FROM chathistory INNER JOIN userinfo ON chathistory.userid = userinfo.userid WHERE userinfo.admin = 0 GROUP BY userid;',
       (err, ids) => {
