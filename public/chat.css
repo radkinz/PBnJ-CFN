@@ -1,26 +1,30 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
 body {
   margin-left: 70px;
   font-size: 25px;
+  font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
-  color: rgb(110,85,158)
+  color: rgb(110, 85, 158);
 }
 body2 {
-   margin-left: 70px;
+  margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
   font-family: Arial, Helvetica, sans-serif;
   color: black;
 }
 body3 {
-   margin-left: 70px;
+  margin-left: 70px;
   font-size: 12px;
   font-weight: normal;
   font-family: Arial, Helvetica, sans-serif;
   color: black;
 }
-#sned_butt{
-  background-color: rgb(14,214,37);
+#sned_butt {
+  background-color: rgb(14, 214, 37);
   border-color: black;
   border-radius: 40px;
   position: absolute;
@@ -28,52 +32,54 @@ body3 {
   right: -7%;
 }
 
-#add_chast{
+#add_chast {
   border-color: black;
   background-color: white;
   border-radius: 6px;
-top: -36px;
-right: 50px;
-    position: relative; 
-  
+  top: -36px;
+  right: 50px;
+  position: relative;
 }
 #add_chast:hover {
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 #back {
   position: relative;
-  margin-left: -222px;
-  top: -35px;
+  margin-left: -50px;
+  top: -65px;
 }
 
-#messageinpoot{
-  display: flex; 
-flex-direction: row;
-justify-content: space-around;
-align-items: center;
+#main {
+  position: relative;
+  margin-left: 70px;
+  top: -102px;
+}
 
+#messageinpoott,
+#messageinpoot {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 
-width: 50%;
+  width: 50%;
   position: fixed;
-right:    4%;
-bottom:   0%;
+  right: 4%;
+  bottom: 0%;
 
-  
   font-size: 20px;
   border-radius: 37px;
   border-color: black;
 }
-
-
 
 .horline1 {
   border: 1px solid black;
   border-radius: 5px;
   position: relative;
   top: 5px;
- margin-left: 25%;
-
+  margin-left: 25%;
 }
 
 /*.vline {
@@ -86,14 +92,51 @@ bottom:   0%;
 }
 */
 
-div.ex1 {
+#labelchatroomSearch {
+  float: left;
+  padding-top: 8px;
+  padding-left: 10px;
+}
+
+#chatroomSearch {
+  width: 100%;
+}
+
+#cancelSearch {
+  float: right;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+span {
+  display: block;
+  overflow: hidden;
+  padding-left: 5px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+div.ex1container  {
   background-color: rgb(255, 255, 255);
   border-radius: 1px;
   position: absolute;
   left: 7px;
   width: 32%;
   height: 97%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+div.ex1container2 {
+  background-color: rgb(255, 255, 255);
+  border-radius: 1px;
+  position: absolute;
+  left: 7px;
+  width: 100%;
+  height: 95%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 div.ex2 {
@@ -107,39 +150,40 @@ div.ex2 {
   overflow: scroll;
 }
 
-#chast1{
+.chatroombutton {
   border-color: black;
   background-color: rgb(255, 255, 255);
   border-radius: 6px;
-  position: relative; 
+  position: relative;
   height: 55px;
-  width: 100%; 
+  width: 100%;
 }
 
-#chast1:hover {
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+.chatroombutton:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
-#chast2{
+.chatroombutton {
   border-color: black;
   background-color: rgb(255, 255, 255);
   border-radius: 6px;
-  position: relative; 
+  position: relative;
   height: 55px;
-  width: 100%; 
+  width: 100%;
 }
 
-#chast2:hover {
-  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+.chatroombutton:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
 
 #back {
-  left: 10px;
-
+  left: 0px;
 }
 .container {
   border: 2px solid #dedede;
-  background-color: rgb(53,121,244);
+  background-color: rgb(53, 121, 244);
   border-radius: 50px;
   padding: 10px;
   margin: 10px 0;
@@ -148,12 +192,12 @@ div.ex2 {
 /* Darker chat container */
 .darker {
   border-color: #ccc;
-  background-color: rgb(233,233,235);
+  background-color: rgb(233, 233, 235);
 }
 
 /* Clear floats */
 .container::after {
-  content: "";
+  content: '';
   clear: both;
   display: table;
 }
@@ -171,7 +215,7 @@ div.ex2 {
 .container img.right {
   float: right;
   margin-left: 20px;
-  margin-right:0;
+  margin-right: 0;
 }
 
 /* Style time text */
@@ -183,5 +227,64 @@ div.ex2 {
 /* Style time text */
 .time-left {
   float: left;
-  color: #999;
+  color: #aaa;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #111;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 10px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
 }

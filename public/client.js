@@ -1,3 +1,28 @@
+//sidebar
+function checkResize () {
+  if ($(window).width() < 700) {
+    $('.ex1container').hide()
+    $('.openbtn').show()
+  } else {
+    $('.ex1container').show()
+    $('.openbtn').hide()
+  }
+}
+checkResize()
+$(window).resize(function () {
+  checkResize()
+})
+
+function openNav () {
+  document.getElementById('mySidebar').style.width = '350px'
+  document.getElementById('main').style.marginLeft = '350px'
+}
+
+function closeNav () {
+  document.getElementById('mySidebar').style.width = '0'
+  document.getElementById('main').style.marginLeft = '70px'
+}
+
 const socket = io()
 console.log('hello')
 sessionStorage.setItem('chatroom', 0)
@@ -40,43 +65,39 @@ function DisplayAllChatrooms () {
 
   if (sessionStorage.getItem('admin') == '1') {
     //clear chats
-      $('.ex1').html(' ')
-      let data = JSON.parse(sessionStorage.getItem('allUserIds'))
-      console.log(data)
+    $('.ex1').html(' ')
+    let data = JSON.parse(sessionStorage.getItem('allUserIds'))
+    console.log(data)
 
-      //add homepage
+    //add homepage
+    $('.ex1').append(
+      '<button class="chatroombutton" id="' +
+        0 +
+        '" onClick="reply_click(' +
+        0 +
+        ')">Bulletin Board</button>'
+    )
+
+    for (let i = 0; i < data.length; i++) {
+      // chatrooms.push(data[i].userid)
+      console.log(data[i].userid)
       $('.ex1').append(
         '<button class="chatroombutton" id="' +
-          0 +
+          data[i].userid +
           '" onClick="reply_click(' +
-          0 +
-          ')">Bulletin Board</button>'
+          data[i].userid +
+          ')">' +
+          data[i].username +
+          '</button>'
       )
+    }
 
-      for (let i = 0; i < data.length; i++) {
-        // chatrooms.push(data[i].userid)
-        console.log(data[i].userid)
-        $('.ex1').append(
-          '<button class="chatroombutton" id="' +
-            data[i].userid +
-            '" onClick="reply_click(' +
-            data[i].userid +
-            ')">' +
-            data[i].username +
-            '</button>'
-        )
-      }
-
-      //make white div for whatever one u are on
-      console.log(
-        sessionStorage.getItem('chatroom'),
-        $(`#${sessionStorage.getItem('chatroom')}`)
-      )
-      $(`#${sessionStorage.getItem('chatroom')}`).css(
-        'background-color',
-        'white'
-      )
-    
+    //make white div for whatever one u are on
+    console.log(
+      sessionStorage.getItem('chatroom'),
+      $(`#${sessionStorage.getItem('chatroom')}`)
+    )
+    $(`#${sessionStorage.getItem('chatroom')}`).css('background-color', 'white')
   } else {
     //add homepage
     $('.ex1').append(
@@ -113,11 +134,9 @@ socket.on('DisplayChats', chats => {
 
   //display chat array
   for (let i = 0; i < chats.length; i++) {
-    if (
-      ids.some(id => id.userid === chats[i].userid) 
-    ) {
+    if (ids.some(id => id.userid === chats[i].userid)) {
       $('.ex2').append(
-        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100%;" /><p>' +
+        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100px;" /><p>' +
           chats[i].chat +
           '</p><span class="time-left">' +
           chats[i].time +
@@ -125,7 +144,7 @@ socket.on('DisplayChats', chats => {
       )
     } else {
       $('.ex2').append(
-        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100%;" /><p>' +
+        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100px;" /><p>' +
           chats[i].chat +
           '</p><span class="time-left">' +
           chats[i].time +
@@ -154,9 +173,7 @@ socket.on('DisplayallChats', chats => {
 
   //display chat array
   for (let i = 0; i < chats.length; i++) {
-    if (
-      ids.some(id => id.userid === chats[i].userid) 
-    ) {
+    if (ids.some(id => id.userid === chats[i].userid)) {
       $('.ex2').append(
         '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100%;" /><p>' +
           chats[i].chat +
@@ -235,6 +252,12 @@ $('#messageinpoot').keypress(function (e) {
   if (key == 13) {
     // the enter key code
     e.preventDefault()
+
+    //check if there is a message to send
+    if ($('#messageinpoot').val() == '') {
+      alert('Please type a message below before sending:)')
+      return
+    }
 
     //send chat from input to server
     let userid = sessionStorage.getItem('userid')
@@ -395,13 +418,26 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
     typeof sessionStorage.getItem('chatroom')
   )
   if (msgchatroomid == sessionStorage.getItem('chatroom')) {
-    $('.ex2').append(
-      '<div class="container darker"><img src="" alt="Avatar" class="right" style="width:100%;" /><p>' +
-        msg +
-        '</p><span class="time-left">' +
-        time +
-        '</span></div>'
-    )
+    let ids = JSON.parse(sessionStorage.getItem('allUserIds'))
+
+    //display new array
+    if (ids.some(id => id.userid === parseInt(senderid))) {
+      $('.ex2').append(
+        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100px;" /><p>' +
+          msg +
+          '</p><span class="time-left">' +
+          time +
+          '</span></div>'
+      )
+    } else {
+      $('.ex2').append(
+        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100px;" /><p>' +
+          msg +
+          '</p><span class="time-left">' +
+          time +
+          '</span></div>'
+      )
+    }
   }
 
   //scroll to bottom
