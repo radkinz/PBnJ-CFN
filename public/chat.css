@@ -133,8 +133,9 @@ div.ex1container2 {
   border-radius: 1px;
   position: absolute;
   left: 7px;
-  width: 100%;
+  width: 90%;
   height: 95%;
+  padding-right: 15px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -237,7 +238,7 @@ div.ex2 {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: rgb(255, 255, 255);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -268,14 +269,11 @@ div.ex2 {
   font-size: 12px;
   cursor: pointer;
   border-radius: 5px;
-  background-color: #111;
-  color: white;
   padding: 5px 10px;
-  border: none;
 }
 
 .openbtn:hover {
-  background-color: #444;
+  background-color: rgb(194, 194, 194);
 }
 
 #main {

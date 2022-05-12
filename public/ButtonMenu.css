@@ -46,8 +46,8 @@ align-items: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#recipies{  
-  text-decoration: none;
+#recipies{
+
   background-color: white;
   border-color: black;
   border-radius: 40px;
@@ -55,9 +55,8 @@ align-items: center;
 
   font-size: 50px;
   font-family: Arial, Helvetica, sans-serif;
-margin-top: 5px;
-  text-align: center;
-  color: black;
+
+ 
 }
 
 
