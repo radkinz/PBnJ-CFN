@@ -42,10 +42,6 @@ app.get('/AdminMenu', (req, res) => {
   res.render('AdminMenu.html')
 })
 
-app.get('/temp', (req, res) => {
-  res.render('temp.html')
-})
-
 //display chat page
 app.get('/chat', (req, res) => {
   res.render('chat.html')

@@ -3,9 +3,17 @@ function checkResize () {
   if ($(window).width() < 700) {
     $('.ex1container').hide()
     $('.openbtn').show()
+
+    //change into mobile css
+    $('.ex2').css('width', '95%')
+    $('#messageinpoot').css('width', '80%')
   } else {
     $('.ex1container').show()
     $('.openbtn').hide()
+
+    //change css back
+    $('.ex2').css('width', '65%')
+    $('#messageinpoot').css('width', '50%')
   }
 }
 checkResize()
@@ -14,8 +22,8 @@ $(window).resize(function () {
 })
 
 function openNav () {
-  document.getElementById('mySidebar').style.width = '350px'
-  document.getElementById('main').style.marginLeft = '350px'
+  document.getElementById('mySidebar').style.width = '220px'
+  document.getElementById('main').style.marginLeft = '160px'
 }
 
 function closeNav () {
