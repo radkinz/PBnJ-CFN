@@ -98,11 +98,11 @@ body3 {
   padding-left: 10px;
 }
 
-#chatroomSearch {
+#chatroomSearch, #chatroomSearch2 {
   width: 100%;
 }
 
-#cancelSearch {
+#cancelSearch, #cancelSearch2 {
   float: right;
   margin-top: 5px;
   margin-right: 10px;
