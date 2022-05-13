@@ -46,7 +46,7 @@ align-items: center;
   font-family: Arial, Helvetica, sans-serif;
 }
 
-#recipies{  
+#recipes{  
   text-decoration: none;
   background-color: white;
   border-color: black;
@@ -66,7 +66,7 @@ margin-top: 5px;
   border-color: black;
   border-radius: 50px;
   width: 500px;
-
+  margin-top: 5px;
   font-size: 50px;
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -97,6 +97,14 @@ margin-top: 5px;
 }
 
 #user:hover {
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#chat:hover {
+  box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#recipes:hover {
   box-shadow: 0 10px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
