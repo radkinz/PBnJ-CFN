@@ -1,12 +1,8 @@
-:root {
-  --purple-color: #7967ad;
-  --orange-color: #f0cf9c;
-  --dark-orange: #d8a558;
-}
-
 h1 {
   text-align: center;
   color: rgb(98, 79, 161);
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 69px;
   width: 100%;
 }
@@ -38,7 +34,7 @@ h1 {
   border-color: black;
   border-radius: 40px;
   font-size: 50px;
-  font-family: Generic, serif, Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #admin {
@@ -46,7 +42,7 @@ h1 {
   border-color: black;
   border-radius: 40px;
   font-size: 50px;
-  font-family: Generic, Serif, Times New Roman;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #adult:hover {

@@ -1,3 +1,36 @@
+//sidebar
+function checkResize () {
+  if ($(window).width() < 700) {
+    $('.ex1container').hide()
+    $('.openbtn').show()
+
+    //change into mobile css
+    $('.ex2').css('width', '95%')
+    $('#messageinpoot').css('width', '80%')
+  } else {
+    $('.ex1container').show()
+    $('.openbtn').hide()
+
+    //change css back
+    $('.ex2').css('width', '65%')
+    $('#messageinpoot').css('width', '50%')
+  }
+}
+checkResize()
+$(window).resize(function () {
+  checkResize()
+})
+
+function openNav () {
+  document.getElementById('mySidebar').style.width = '220px'
+  document.getElementById('main').style.marginLeft = '160px'
+}
+
+function closeNav () {
+  document.getElementById('mySidebar').style.width = '0'
+  document.getElementById('main').style.marginLeft = '70px'
+}
+
 const socket = io()
 sessionStorage.setItem('chatroom', 0)
 sessionStorage.setItem('chatroomList', [0])
@@ -235,8 +268,14 @@ $('#messageinpoot').keypress(function(e) {
         // the enter key code
         e.preventDefault()
 
-        //send chat from input to server
-        let userid = sessionStorage.getItem('userid')
+    //check if there is a message to send
+    if ($('#messageinpoot').val() == '') {
+      alert('Please type a message below before sending:)')
+      return
+    }
+
+    //send chat from input to server
+    let userid = sessionStorage.getItem('userid')
 
         let date_ob = new Date()
 
@@ -420,4 +459,46 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
         },
         1200
     )
+})
+  }
+
+  DisplayAllChatrooms()
+
+  //only append if in correct chatroom
+  console.log(
+    sessionStorage.getItem('chatroom'),
+    msgchatroomid,
+    typeof msgchatroomid,
+    typeof sessionStorage.getItem('chatroom')
+  )
+  if (msgchatroomid == sessionStorage.getItem('chatroom')) {
+    let ids = JSON.parse(sessionStorage.getItem('allUserIds'))
+
+    //display new array
+    if (ids.some(id => id.userid === parseInt(senderid))) {
+      $('.ex2').append(
+        '<div class="container darker"><img src="/images/avatar.jpg" alt="Avatar" class="right" style="width:100px;" /><p>' +
+          msg +
+          '</p><span class="time-left">' +
+          time +
+          '</span></div>'
+      )
+    } else {
+      $('.ex2').append(
+        '<div class="container"><img src="/images/logo(1).png" alt="Avatar" class="right" style="width:100px;" /><p>' +
+          msg +
+          '</p><span class="time-left">' +
+          time +
+          '</span></div>'
+      )
+    }
+  }
+
+  //scroll to bottom
+  $('.ex2').animate(
+    {
+      scrollTop: document.getElementsByClassName('ex2')[0].scrollHeight
+    },
+    1200
+  )
 })

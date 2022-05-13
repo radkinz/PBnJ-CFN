@@ -18,16 +18,44 @@
     <div class="new5"></div>
   </body>
   <body2>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <div class="ex1container2">
+        <label
+          id="labelchatroomSearch"
+          class="chatroomSearchContainer"
+          for="chatroomSearch"
+          >Seach Users:</label
+        >
+        <button class="chatroomSearchContainer" id="cancelSearch">
+          ×
+        </button>
+        <span
+          ><input class="chatroomSearchContainer" type="text" id="chatroomSearch"
+        /></span>
+        <div class="ex1"></div>
+      </div>
+    </div>
     <div class="ex1container">
-      <label id ="labelchatroomSearch" class="chatroomSearchContainer" for="chatroomSearch">Seach Users:</label> <button class="chatroomSearchContainer" id="cancelSearch">Cancel Search</button>
-      <span><input class="chatroomSearchContainer" type="text" id="chatroomSearch" /></span> 
+      <label
+        id="labelchatroomSearch"
+        class="chatroomSearchContainer"
+        for="chatroomSearch"
+        >Seach Users:</label
+      >
+      <button class="chatroomSearchContainer" id="cancelSearch">
+        ×
+      </button>
+      <span
+        ><input class="chatroomSearchContainer" type="text" id="chatroomSearch"
+      /></span>
       <div class="ex1"></div>
     </div>
   </body2>
   <body3>
     <div class="ex2">
       <div class="container darker">
-        <img src="" alt="Avatar" class="right" style="width:100%;" />
+        <img src="" alt="Avatar" class="right" style="width:100px;" />
         <p>Hey! I'm fine. Thanks for asking!</p>
         <span class="time-left">11:01</span>
       </div>
@@ -49,5 +77,8 @@
 
   <div>
     <input id="back" type="submit" name="submit" value="Back" />
+  </div>
+  <div id="main">
+    <button class="openbtn" onclick="openNav()">☰ Open Chatrooms</button>
   </div>
 </html>
