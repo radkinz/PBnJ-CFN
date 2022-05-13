@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <h1>Delete Account</h1>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="AccountDeletion.css" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- import socket.io -->
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+  <b>Account Name</b>
+
+  <div id="userListContainer"> 
+    {{#Profiles}}
+      <button class= "chast" type="button">{{Usernames}}</button>
+    
+    {{/Profiles}}
+  </div>
+  
+  <div id="large-container">
+    
+
+    <div id="deleteButtonContainer">
+
+      <button id="delete-account" type="button">Delete Account</div>
+    </div>
+  </div>
+  <script src="client.js"></script>
+  
+</body>
+
+
+
+
+</html>
