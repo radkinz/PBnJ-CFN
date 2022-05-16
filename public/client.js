@@ -460,7 +460,7 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
         1200
     )
 })
-  }
+  
 
   DisplayAllChatrooms()
 
@@ -501,4 +501,4 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
     },
     1200
   )
-})
+
