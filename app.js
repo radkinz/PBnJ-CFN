@@ -147,8 +147,6 @@ io.on('connection', socket => {
         connection.query('DELETE FROM userinfo WHERE username = (?)', deletedUser, err => {
             if (err) throw err
             console.log('User successfully deleted')
-              app.on("/AccountDelete");
-
         })
     })
 
