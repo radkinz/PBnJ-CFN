@@ -60,10 +60,6 @@ app.get('/Auth', function(req, res) {
     res.render('Auth.html')
 })
 
-app.get('/AdminMenu', function(req, res) {
-    res.render('AdminMenu.html', {})
-})
-
 //display account delete page
 app.get('/AccountDelete', function(req, res) {
     let usernames = []
@@ -80,17 +76,17 @@ app.get('/AccountDelete', function(req, res) {
 })
 
 //display main menu
-app.get('/ButtonMenu', function(req, res) {
-    res.render('buttonmenu.html')
+app.get('/menu', function(req, res) {
+    res.render('menu.html')
 })
 
 app.get('/AccountCreation', function(req, res) {
     res.render('createUser.html')
 })
 
-
 //connect new user
 io.on('connection', socket => {
+
     socket.on('allChats', (chatroomId, nxtCmd) => {
         console.log(chatroomId)
             //send new user all chat messages from database
@@ -169,7 +165,6 @@ io.on('connection', socket => {
                     bcrypt.compare(password, hashedPassword, function(err, isMatch) {
                         if (err) console.log(err)
 
-
                         // Comparing the original password to
                         // encrypted password
                         if (isMatch) {
@@ -199,7 +194,6 @@ io.on('connection', socket => {
                         if (!isMatch) {
                             // If password doesn't match the following
                             // message will be sent
-
                             socket.emit('loginStatus', false)
                         }
                     })
@@ -231,7 +225,6 @@ io.on('connection', socket => {
                         )
                     }
                 )
-
                 //send out new chat to connected users
                 //io.emit('newChattoUsers', newChat, time, userid, chatroomid, username)
             }

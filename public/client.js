@@ -1,3 +1,6 @@
+//"authentication token"
+let access_token = false;
+
 //sidebar
 function checkResize () {
   if ($(window).width() < 700) {
@@ -241,25 +244,33 @@ socket.on('DisplayallChats', chats => {
 //check user login status
 socket.on('loginStatus', (status, adminStatus) => {
   if (status) {
+    access_token = true;
     if (adminStatus == 1) {
-      window.location = '/ButtonMenu?status=1'
+      window.location = '/menu?status=1'
     } else {
-      window.location = '/ButtonMenu?status=0'
+      window.location = '/menu?status=0'
     }
   } else {
     alert('Incorrect username or password. Please try again.')
     return
   }
 })
-
+$("#test").click(function() {
+  console.log("test")
+  socket.emit("goback");
+})
 $('#back').click(function () {
   let adminStatus = sessionStorage.getItem('admin')
 
   if (adminStatus == '1') {
-    window.location = '/ButtonMenu?status=1'
+    window.location = '/menu?status=1'
   } else {
-    window.location = '/ButtonMenu?status=0'
+    window.location = '/menu?status=0'
   }
+})
+
+$('#Logout').click(function() {
+  access_token = false;
 })
 
 //grab chatroom id
@@ -538,3 +549,4 @@ socket.on('newChattoUsers', (msg, time, senderid, msgchatroomid, username) => {
     1200
   )
 
+})
